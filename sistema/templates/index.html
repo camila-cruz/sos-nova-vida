@@ -1,0 +1,55 @@
+<!-- Carrega o menu lateral e o cabeçalho da página -->
+{% extends 'menu.html'%}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Bem vindo(a) ao sistema da SOS Nova Vida!</h1>
+    <h2>Para onde deseja ir?</h2>
+    <button class="hidden">Anotações</button>
+    <button class="hidden">Calendário</button><br>
+
+    <div>  
+        <h2>ACESSO RÁPIDO</h2><hr>
+        <div class="row botoes-inicio">
+            <ul>
+                <a href="#!/cadastro/acolhido" role="button">
+                    <li class="col-md-3">
+                        <span class="glyphicon glyphicon-heart-empty icon-inicio"></span><br><br>
+                        <div>
+                            CADASTRO DE ACOLHIDOS
+                        </div>
+                    </li>
+                </a>
+                <a href="#!/cadastro/doador">
+                    <li class="col-md-3 col-md-offset-1">
+                        <span class="glyphicon glyphicon-thumbs-up icon-inicio"></span><br><br>
+                        <div>
+                            CADASTRO DE DOADORES
+                        </div>
+                    </li>
+                </a>
+                <a href="#!/estoque">
+                    <li class="col-md-3 col-md-offset-1">
+                        <span class="glyphicon glyphicon-shopping-cart icon-inicio"></span><br><br>
+                        <div>
+                            CONTROLE DE ESTOQUE
+                        </div>
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <br>
+        
+        <h2>DADOS DE INTERESSE</h2><hr>
+        <div class="row graficos">
+            <!-- Gráfico de barras -->
+            <div class="col-md-6 col-md-offset-1" style="margin-left: 0" >
+                <canvas id="produtos"></canvas>
+            </div>
+
+            <div class="col-md-6">
+                <canvas id="acolhidos"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!-- Carrega o menu lateral e o cabeçalho da página -->
+{% extends 'menu.html'%}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Consulta de Doadores</h1>
+    <hr>
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>Telefone residencial</th>
+            <th>Celular</th>
+            <th>E-mail</th>
+        </tr>
+        {% for doador in doadores %}
+        <tr>
+            <td>{{ doador.nome }}</td>
+            <td>{{ doador.tel_residencial }}</td>
+            <td>{{ doador.tel_celular }}</td>
+            <td>{{ doador.email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
