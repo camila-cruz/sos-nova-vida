@@ -12,14 +12,16 @@
             {{ form.nome.errors }}  
             <label for="{{ form.nome.id_for_label }}" class="col-md-2 col-md-offset-1">Nome completo</label>
             <div class="col-md-8">
-                <!--{{ form.nome }}-->
+                {{ form.nome }}
                 <input type="text" class="form-control" ng-model='doador.nome' ng-required='true'><br>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">E-mail</label>
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}" class="col-md-2 col-md-offset-1">E-mail</label>
             <div class="col-md-8">
+                {{ form.email }}
                 <input type="text" class="form-control" ng-model='doador.email'><br>
             </div>
         </div>
@@ -37,64 +39,33 @@
         </div>
 
         <hr><br>
-        <div class="form-group">    
-            <label class="col-md-2 col-md-offset-1">Endereço</label>
-            <div class="col-md-5">
-                <input type="text" ng-model='doador.endereco' class="form-control"><br>
-            </div>
-
-            <label class="col-md-1">Número</label>
-            <div class="col-md-2">
-                <input type="text" ng-model='doador.numero' class="form-control"><br>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Complemento</label>
-            <div class="col-md-2">
-                <input type="text" ng-model='doador.complemento' class="form-control"><br>
-            </div>
-
-            <label class="col-md-1 col-md-offset-1">Bairro</label>
-            <div class="col-md-4">
-                <input type="text" ng-model='doador.bairro' class="form-control"><br>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Cidade</label>
-            <div class="col-md-5">
-                <input type="text" ng-model='doador.cidade' class="form-control"><br>
-            </div>
-
-            <label class="col-md-1">UF</label>
-            <div class="col-md-2">
-                <select class='form-control' ng-model='doador.uf' ng-options='uf.nome for uf in ufs'>
-                    <option value='' ng-disabled='true'>UF</option>
-                </select><br>
-            </div>
-        </div>
-
-        <hr>
         <div class="form-group">
             <label class="col-md-2 col-md-offset-1">Tipos de doação</label>
-            <label class="col-md-1">Voluntário</label>
+            {{ form.voluntario.errors }}
+            <label for="{{ form.voluntario.id_for_label }}" class="col-md-1">Voluntário</label>
             <div class="col-md-1">
+                {{ form.voluntario }}
                 <input type="checkbox" ng-model='doador.voluntario'><br>
             </div>
 
-            <label class="col-md-1">Financeiro</label>
+            {{ form.financeiro.errors }}
+            <label for="{{ form.financeiro.id_for_label }}" class="col-md-1">Financeiro</label>
             <div class="col-md-1">
+                {{ form.financeiro }}
                 <input type="checkbox" ng-model='doador.financeiro'><br>
             </div>
 
-            <label class="col-md-1">Vestuário</label>
+            {{ form.vestuario.errors }}
+            <label for="{{ form.vestuario.id_for_label }}" class="col-md-1">Vestuário</label>
             <div class="col-md-1">
+                {{ form.vestuario }}
                 <input type="checkbox" ng-model='doador.vestuario'><br>
             </div>
 
-            <label class="col-md-1">Alimentos</label>
+            {{ form.alimenticio.errors }}
+            <label for="{{ form.alimenticio.id_for_label }}" class="col-md-1">Alimentos</label>
             <div class="col-md-1">
+                {{ form.alimenticio }}
                 <input type="checkbox" ng-model='doador.alimenticio'><br>
             </div>
         </div>
@@ -107,114 +78,5 @@
                 <button class="btn btn-success" type="submit">Salvar</button>
             </div>
         </div>
-
-
-            <div class="hidden">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-            <div class="row">
-                <div class="col-md-8">
-                    {{ form.nome.errors }}
-                    <label for="{{ form.nome.id_for_label }}">Nome completo</label><br>
-                    {{ form.nome }}<br>
-                    <div class="row">
-                        <div class="col-md-5">
-                            {{ form.data_entrada.errors }}
-                            <label for="{{ form.data_entrada.id_for_label }}">Data de entrada</label><br>
-                            {{ form.data_entrada }}
-                        </div>
-                        <div class="col-md-offset-1 col-md-6">
-                            {{ form.tipo.errors }}
-                            <label for="{{ form.tipo.id_for_label }}">Tipo</label><br>
-                            {{ form.tipo }}<br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {{ form.endereco.errors }}
-                            <label for="{{ form.endereco.id_for_label }}">Endereço</label><br>
-                            {{ form.endereco }}<br>
-                        </div>
-                        <div class="col-md-3">
-                            {{ form.numero.errors }}
-                            <label for="{{ form.numero.id_for_label }}">Número</label><br>
-                            {{ form.numero }}<br>
-                        </div>
-                        <div class="col-md-3">
-                            {{ form.complemento.errors }}
-                            <label for="{{ form.complemento.id_for_label }}">Complemento</label><br>
-                            {{ form.complemento }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-offset-1 col-md-2">
-                    {{ form.imagem.errors }}
-                    <label for="{{ form.imagem.id_for_label }}">Foto</label><br>
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 240px; height: 180px;"></div>
-                        <div>
-                        <span class="btn btn-default btn-file">
-                            <span class="fileinput-new">Selecione a imagem</span>
-                            <span class="fileinput-exists">Alterar</span>
-                            {{ form.imagem }}
-                        </span>
-                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
-                        </div>
-                    </div><br>
-                </div><br>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3">
-                    {{ form.bairro.errors }}
-                    <label for="{{ form.bairro.id_for_label }}">Bairro</label>
-                    {{ form.bairro }}
-                </div>
-                <div class="col-md-offset-1 col-md-5">
-                    {{ form.cidade.errors }}
-                    <label for="{{ form.cidade.id_for_label }}">Cidade</label><br>
-                    {{ form.cidade }}
-                </div>
-                <div class="col-md-offset-1 col-md-2">
-                    {{ form.uf.errors }}
-                    <label for="{{ form.uf.id_for_label }}">UF</label><br>
-                    {{ form.uf }}
-                    <br>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    {{ form.tel_residencial.errors }}
-                    <label for="{{ form.tel_residencial.id_for_label }}">Telefone residencial</label><br>
-                    {{ form.tel_residencial }}<br>
-                </div>
-                <div class="col-md-4">
-                    {{ form.tel_celular.errors }}
-                    <label for="{{ form.tel_celular.id_for_label }}">Celular</label><br>
-                    {{ form.tel_celular }}<br>
-                </div>
-                <div class="col-md-4">
-                    {{ form.tel_comercial.errors }}
-                    <label for="{{ form.tel_comercial.id_for_label }}">Telefone comercial</label><br>
-                    {{ form.tel_comercial }}<br>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    {{ form.email.errors }}
-                    <label for="{{ form.email.id_for_field }}">E-mail</label><br>
-                    {{ form.email }}
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-12 text-right">
-                    <button class="btn btn-primary" type="reset">Limpar</button> 
-                    <button class="btn btn-success" type="submit">Salvar</button>
-                </div>
-            </div>
-            </div>
     </form>
 {% endblock %}
