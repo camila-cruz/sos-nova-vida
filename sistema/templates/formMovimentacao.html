@@ -2,46 +2,49 @@
 {% load staticfiles %}
 
 {% block content %}
-    <h1>Movimentação</h1><hr><br>
-    <form action="post_mov/" method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="row">
-            <div class="col-md-12">
-                {{ form.descricao.errors }}
-                <label for="{{ form.descricao.id_for_label }}">Descrição</label><br>
-                {{ form.descricao }}<br>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                {{ form.qtd.errors }}
-                <label for="{{ form.qtd.id_for_label }}">Quantidade</label><br>
-                {{ form.qtd }}<br>
-            </div>
-            <div class="col-md-3">
-                {{ form.valor.errors }}
-                <label for="{{ form.valor.id_for_label }}">Valor</label><br>
-                {{ form.valor }}<br>
-            </div>
-            <div class="col-md-3">
-                {{ form.data.errors }}
-                <label for="{{ form.data.id_for_label }}">Data</label><br>
-                {{ form.data }}<br>
-            </div>
-            <div class="col-md-3">
-                {{ form.tipo.errors }}
-                <label for="{{ form.tipo.id_for_label }}">Tipo</label><br>
-                {{ form.tipo }}
-            </div>
-        </div>
+    <h1>Movimentações no Estoque</h1>
+    <hr>
+    <button class="btn btn-warning" data-toggle="collapse" data-target="#buscaPersonalizada">Busca personalizada</button><br>
 
+    <div class="collapse" id="buscaPersonalizada">
         <br>
-        <div class="row">
-            <div class="col-md-12 text-right">
-                <button class="btn btn-primary" type="reset">Limpar</button> 
-                <button class="btn btn-success" type="submit">Salvar</button>
-            </div>
+        <div class="form-group">
+            <label>Busque pelo nome</label><br>
+            <input type="text" ng-model='buscaNome' class="form-control"><br>
         </div>
-    </form>
+        <div class="form-group">
+            <label>Tipo</label><br>
+            <input type="checkbox" ng-model='buscaEntrada' value='ENTRADA'> Entrada<br><br>
+            <input type="checkbox" ng-model='buscaSaida' value='SAIDA'> Saída<br>
+        </div>
+        <div class="form-group">
+            <label>De </label>
+            <input type="text" class="form-control" ng-model='buscaDataInicial' ui-date placeholder="Data inicial">
+            <label>Até </label>
+            <input type="text" class="form-control" ng-model='buscaDataFinal' ui-date placeholder="Data final">
+        </div>
+    </div>
+
+    <hr>
+    <table class="table table-bordered">
+        <tr>
+            <th class="col-md-2">Tipo</th>
+            <th class="col-md-6">Descrição</th>
+            <th class="col-md-2">Quantidade</th>
+            <th class="col-md-2">Data</th>
+        </tr>
+        
+        <tr ng-class='{ success: movimentacao.tipo=="ENTRADA", danger: movimentacao.tipo=="SAIDA" }'
+            ng-repeat='movimentacao in movimentacoes | 
+                        filter: { 
+                            descricao: buscaNome, 
+                            tipo: buscaEntrada && buscaSaida ? "" : buscaEntrada ? "ENTRADA" : buscaSaida ? "SAIDA" : ""
+                        } | 
+                        orderBy: "descricao"' >
+            <td>{{movimentacao.tipo}}</td>
+            <td>{{movimentacao.descricao}}</td>
+            <td>{{movimentacao.qtd}}</td>
+            <td>{{movimentacao.data | date:'dd/MM/yy' }}</td>
+        </tr>
+    </table>
 {% endblock %}
