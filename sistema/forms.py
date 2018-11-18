@@ -4,7 +4,7 @@ from .models import *
 class AcolhidoForm(forms.ModelForm):
     class Meta:
         model = Acolhido
-        fields = ['nome', 'data_nasc', 'data_entrada', 'local_nasc', 'uf', 'nome_mae', 'nome_pai', 'nome_resp', 'imagem']
+        fields = ['nome', 'data_nasc', 'data_entrada', 'cid_natal', 'uf', 'nome_mae', 'nome_pai', 'nome_resp', 'imagem']
         
 class DoadorForm(forms.ModelForm):
     class Meta:

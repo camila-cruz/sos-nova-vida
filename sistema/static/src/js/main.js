@@ -1,8 +1,9 @@
 $(document).ready(function() {
     // Adiciona bootstrap aos inputs necessários
-    $('input').addClass("form-control");
-    $('input:checkbox').removeClass("form-control");
+    $('input:not(:checkbox, :radio)').addClass("form-control");
+    //$('input:checkbox').removeClass("form-control");
     $('select').addClass("form-control");
+    
     // Colocar um try aqui: não abre a página de estoque depois de abrir a página de configuração
     document.getElementById("id_imagem").type = "file";
 

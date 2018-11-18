@@ -8,7 +8,7 @@ class Acolhido(models.Model):
     nome = models.CharField(max_length=40)
     data_nasc = models.DateField(default=date.today)
     data_entrada = models.DateField(default=date.today)
-    local_nasc = models.CharField(max_length=50)
+    cid_natal = models.CharField(max_length=50)
     uf = models.CharField(max_length=2, default="SP")
     imagem = models.ImageField(upload_to='img_acolhidos', default='media/default.png')
     nome_mae = models.CharField(max_length=40, default="")
