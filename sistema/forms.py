@@ -9,7 +9,7 @@ class AcolhidoForm(forms.ModelForm):
 class DoadorForm(forms.ModelForm):
     class Meta:
         model = Doador
-        fields = ['nome', 'data_entrada', 'email', 'tel_residencial', 'tel_celular', 'tel_comercial', 'voluntario', 'financeiro', 'vestuario', 'alimenticio']
+        fields = ['nome', 'data_entrada', 'email', 'tel_residencial', 'tel_celular', 'voluntario', 'financeiro', 'vestuario', 'alimenticio']
 
 class MovimentacaoForm(forms.ModelForm):
     class Meta:

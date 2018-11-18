@@ -23,7 +23,7 @@ def post_acolhido(request):
     return HttpResponseRedirect('/')
 
 def cons_acolhido(request):
-    acolhidos = Acolhido.objects.all()
+    acolhidos = {} # Acolhido.objects.all()
     return render(request, 'consultaAcolhido.html', {'acolhidos': acolhidos})
 
 # PIA
@@ -60,7 +60,7 @@ def post_doador(request):
     return HttpResponseRedirect('/')
 
 def cons_doador(request):
-    doadores = Doador.objects.all()
+    doadores = {} # Doador.objects.all()
     return render(request, 'consultaDoador.html', {'doadores': doadores})
 
 # Doacoes

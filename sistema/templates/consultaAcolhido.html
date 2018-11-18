@@ -33,4 +33,96 @@
         </tr>
         {% endfor %}
     </table>
+
+    <!-- MODAL PARA CRIAR LISTAS -->
+<div class="modal fade" id="mdlCriarLista" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h3 class="modal-title" ng-if="modoDeAbertura == 'criar'">Criar uma nova lista</h3>
+                    <h3 class="modal-title" ng-if="modoDeAbertura == 'editar'">Editar lista</h3>
+                </div> 
+                <!-- ///////////////////////////////////// -->
+                <div class="modal-body">
+                    <form>
+                        <label>Escolha um nome</label><br>
+                        <input type="text" class="form-control" ng-model='lista.nome'><br>
+                        <label>Acolhidos presentes na lista</label>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th class="col-md-4">Nome</th>
+                                <th class="col-md-3">Data de nascimento</th>
+                                <th class="col-md-1">Camiseta</th>
+                                <th class="col-md-1">Calça</th>
+                                <th class="col-md-1">Roupa íntima</th>
+                                <th class="col-md-1">Calçado</th>
+                                <th class="col-md-1"></th>
+                            </tr>
+                            <tr ng-repeat='acolhido in lista' ng-if='modoDeAbertura == "criar"'>
+                                <td>{{acolhido.nome}}</td>
+                                <td>{{acolhido.data_nasc}}</td>
+                                <td>{{acolhido.camiseta}}</td>
+                                <td>{{acolhido.calca}}</td>
+                                <td>{{acolhido.intima}}</td>
+                                <td>{{acolhido.calcado}}</td>
+                                <td class="text-center"><button type="button" class="close" style="float:none;" ng-click=' removeAcolhido( acolhido )' ><span>&times;</span></button></td>
+                            </tr>
+                            <tr ng-repeat='acolhido in lista.acolhidos' ng-if='modoDeAbertura == "editar"'>
+                                <td>{{acolhido.nome}}</td>
+                                <td>{{acolhido.data_nasc}}</td>
+                                <td>{{acolhido.camiseta}}</td>
+                                <td>{{acolhido.calca}}</td>
+                                <td>{{acolhido.intima}}</td>
+                                <td>{{acolhido.calcado}}</td>
+                                <td class="text-center"><button type="button" class="close" style="float:none;" ng-click=' removeAcolhido( acolhido )' ><span>&times;</span></button></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div> 
+                <!-- ///////////////////////////////////// -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-if="modoDeAbertura == 'criar'" ng-click='cancelarLista()'>Cancelar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#mdlViewLista" ng-if="modoDeAbertura == 'editar'">Voltar</button>                
+                    <button type="button" class="btn btn-success" ng-click=' salvarLista( lista ) '>Salvar</button>
+                </div>
+            </div> <!-- modal content -->
+        </div> <!-- modal dialog -->
+    </div> <!-- modal fade -->
+    
+    
+    <!-- MODAL PARA VISUALIZAR LISTAS -->
+    <div class="modal fade" id="mdlViewLista" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h3 class="modal-title">Visualizar listas</h3>
+                </div> 
+                <!-- ///////////////////////////////////// -->
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <th class="col-md-10">Nome da lista</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                        <tr ng-repeat='lista in listas'>
+                            <td>{{lista.nome}}</td>
+                            <td><button type="button" class="close" style="float:none;" data-dismiss="modal" data-toggle="modal" data-target="#mdlCriarLista" ng-click="obterLista( lista )"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                            <td><button type="button" class="close" style="float:none;" ng-click='apagarLista( lista )'><span>&times;</span></button></td>
+                        </tr>
+                    </table>
+                </div> 
+                <!-- ///////////////////////////////////// -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div> <!-- modal content -->
+        </div> <!-- modal dialog -->
+    </div> <!-- modal fade -->
 {% endblock %}
