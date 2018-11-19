@@ -16,15 +16,16 @@ class MovimentacaoForm(forms.ModelForm):
         model = Movimentacao
         #fields = ['valor', 'tipo', 'descricao', 'data', 'qtd']
         fields = ['valor', 'tipo', 'descricao', 'data', 'qtd']
-#class DoacaoForm(forms.ModelForm):
-#    class Meta:
-#        model = Doacao
-#        fields = ['qtd']    # Falta o tipo da doacao
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
         fields = ['descricao', 'qtd', 'unidade', 'data_validade', 'preco_entrada']
+
+class DoacaoForm(forms.ModelForm):
+    class Meta:
+        model = Doacao
+        fields = ['descricao', 'tipo_doacao', 'qtd', 'valor']
 
 class ConfiguracaoForm(forms.ModelForm):
     class Meta:

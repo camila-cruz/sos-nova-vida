@@ -23,7 +23,9 @@ urlpatterns = [
     url('consultaDoador', views.cons_doador),
 
     # Doações
-    url('formDoacoes', views.cons_doacoes),
+    url('formDoacao', views.form_doacao),
+    url('^post_doacao/$', views.post_doacao),
+    url('consultaDoacao', views.cons_doacao),
 
     # Estoque
     url('formProduto', views.form_produto),

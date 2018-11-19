@@ -64,9 +64,19 @@ def cons_doador(request):
     return render(request, 'consultaDoador.html', {'doadores': doadores})
 
 # Doacoes
-def cons_doacoes(request):
-    doacoes = Movimentacao.objects.filter(tipo="DOACAO")
-    return render(request, 'formContabilidade.html', {'doacoes': doacoes})
+def form_doacao(request):
+    form = DoacaoForm()
+    return render(request, 'formDoacao.html', {'form': form})
+
+def post_doacao(request):
+    form = DoacaoForm(request.POST)
+    if form.is_valid():
+        form.save(commit = True)
+    return HttpResponseRedirect('/')
+
+def cons_doacao(request):
+    doacoes = Movimentacao.objects.filter(tipo="DOACAO")        # Verificar se essa é a forma certa de fazer isso
+    return render(request, 'consultaDoacao.html', {'doacoes': doacoes})
 
 # Estoque
 def form_produto(request):

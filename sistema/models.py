@@ -43,17 +43,20 @@ class Movimentacao(models.Model):
     data = models.DateField(default=date.today)
     qtd = models.IntegerField()
 
-#class Doacao(Movimentacao):
-    #qtd = models.IntegerField()
-    # Doador
-    #tipo_doacao = models.CharField(max_length=10)   # Bens, Dinheiro e Tempo
-
 class Produto(models.Model):
     descricao = models.CharField(max_length=150)
     qtd = models.IntegerField()
     unidade = models.CharField(max_length=20)
     data_validade = models.DateField(default=date.today)
     preco_entrada = models.DecimalField(max_digits=7, decimal_places=2)
+    
+class Doacao(models.Model):
+    descricao = models.CharField(max_length=150)
+    tipo_doacao = models.CharField(max_length=10)   # Bens, Dinheiro e Tempo
+    #doador
+    qtd = models.IntegerField()
+    valor = models.DecimalField(max_digits=7, decimal_places=2)
+    # Doador
 
 class Caixa(models.Model):
     vlr_disponivel = models.DecimalField(max_digits=7, decimal_places=2)
