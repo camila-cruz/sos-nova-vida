@@ -9,6 +9,9 @@
 * Verificar telefones do doador (fica mesmo "telefone 1", "telefone 2"?)
     Colocar que nem agenda de celular, com um "+" do lado e o tipo de telefone (salva numa tb separada)
 
+## Reunião 02/03/2019
+* Tirar o atributo "foto" na model de Acolhido no diagrama de classes
+
 ## Para as próximas reuniões:
 * Revisar todas as models do diagrama de classe
 * Opção de vestimentas de acolhido e voluntariado do doador como no "Boteco do Gallão"
