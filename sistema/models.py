@@ -17,6 +17,45 @@ class Acolhido(models.Model):
     resp_pai = models.BooleanField(default=False)
     nome_resp = models.CharField(max_length=40, default="")
     resp_resp = models.BooleanField(default=False)
+    cpf = models.CharField(max_length=11)
+    rg = models.CharField(max_length=11)
+    ssp = models.CharField(max_length=2)
+    renda = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    sexo = models.CharField(max_length=1)
+    camiseta = models.CharField(max_length=2)
+    calca = models.CharField(max_length=2)
+    intima = models.CharField(max_length=1)
+    calcado = models.CharField(max_length=2)
+    alergias = models.TextField()
+    sangue = models.CharField(max_length=1)
+    qtd_aborto = models.IntegerField()
+
+class Residencia(models.Model):
+    cep = models.CharField(max_length=8)
+    logradouro = models.CharField(max_length=65)
+    numero = models.CharField(max_length=4)
+    complemento = models.CharField(max_length=15)
+    bairro = models.CharField(max_length=30)
+    cidade = models.CharField(max_length=30)
+    uf = models.CharField(max_length=2)
+
+class Trabalho(models.Model):
+    empresa = models.CharField(max_length=30)
+    cargo = models.CharField(max_length=20)
+    salario = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    cep = models.CharField(max_length=8)
+    logradouro = models.CharField(max_length=65)
+    numero = models.CharField(max_length=4)
+    complemento = models.CharField(max_length=15)
+    bairro = models.CharField(max_length=30)
+    cidade = models.CharField(max_length=30)
+    uf = models.CharField(max_length=2)
+
+class Juridico(models.Model):
+    processo = models.CharField(max_length=25)
+    comarca = models.CharField(max_length=30)
+    nro_vara = models.CharField(max_length=2)
+    vara = models.CharField(max_length=20)
 
 class Doador(models.Model):
     nome = models.CharField(max_length=40)
