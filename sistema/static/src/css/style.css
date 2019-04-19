@@ -4,6 +4,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One');
+
+/* Pra forçar a página a recarregar o cache: Ctrl+F5 */
 
 body {
    font-family: "Lato", times, Arial, sans-serif;
@@ -278,4 +281,28 @@ input[type='checkbox'] {
 .texto-pia {
     font-family: 'Slabo 27px', Times, serif;
     font-size: 1.1em;
+}
+
+/* *************************** FORMULÁRIO DE DOADOR ******************************* */
+
+.lblDoador {
+    display: inline-block;
+    width: 100%;
+    margin: 2%;
+}
+.lblDoador > input { /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.lblDoador > input + img { /* IMAGE STYLES */
+    cursor:pointer;
+    /*border:2px solid transparent;*/
+    border: 2px solid rgb(214, 190, 190);
+    border-radius: 50%;
+    padding: 5%;
+    opacity: 0.5;
+}
+.lblDoador > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
+    border:2px solid #f00;
+    opacity: 1;
 }
