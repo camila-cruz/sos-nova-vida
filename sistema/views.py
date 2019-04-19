@@ -19,7 +19,8 @@ def form_acolhido(request):
 def post_acolhido(request):
     form = AcolhidoForm(request.POST, request.FILES)
     if form.is_valid():
-        form.save(commit = True)
+        print (form.cleaned_data)
+        #form.save(commit = True)
     return HttpResponseRedirect('/')
 
 def cons_acolhido(request):

@@ -94,7 +94,7 @@
                 </div>
             </div>
         </div><br>
-
+        <!-- Não esquecer de adicionar cada campo no forms.py, senão não aparece na tela -->
         <div class="form-group">
             <label class="col-md-2 col-md-offset-1">Grau de parentesco</label>
             <div class="col-md-3">
@@ -108,11 +108,11 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group">    <!-- Analisar o maxlength na model e a interferência dele aqui -->
             {{ form.cpf.errors }}
             <label for="{{ form.cpf.id_for_label }}" class="col-md-2 col-md-offset-1">CPF</label>
             <div class="col-md-2">
-                {% render_field form.cpf class+="form-control" %}
+                {% render_field form.cpf class+="form-control input-cpf" %}
             </div>
 
             {{ form.rg.errors }}
@@ -122,8 +122,8 @@
             </div>
 
             <!-- Órgão emissor -->
-            {{ form.rg.errors }}
-            <label for="{{ form.rg.id_for_label }}" class="col-md-1 ">SSP</label>
+            {{ form.ssp.errors }}
+            <label for="{{ form.ssp.id_for_label }}" class="col-md-1">SSP</label>
             <div class="col-md-2">
                 {% render_field form.ssp class+="form-control" %}
             </div>
@@ -149,34 +149,44 @@
         </div>
 
         <label class="col-md-10 col-md-offset-1"><h3>Vestimentas</h3><hr></label>
-        <div class='form-group'>
-            <label class='col-md-1 col-md-offset-1'>Camiseta</label>
-            <div class='col-md-1'>
+        <div class="form-group">
+            {{ form.camiseta.errors }}
+            <label for="{{ form.camiseta.id_for_label }}" class="col-md-1 col-md-offset-1">Camiseta</label>
+            <div class="col-md-1">
+                {% render_field form.camiseta class+="form-control" %}
                 <input type='text' ng-model='acolhido.tamCamiseta' class='form-control'>
             </div>
-            <label class='col-md-1'>Calça</label>
-            <div class='col-md-1'>
+            {{ form.calca.errors }}
+            <label for="{{ form.calca.id_for_label }}" class="col-md-1">Calça</label>
+            <div class="col-md-1">
+                {% render_field form.calca class+="form-control" %}
                 <input type='text' ng-model='acolhido.tamCalca' class='form-control'>
             </div>
-            <label class='col-md-2'>Roupa íntima</label>
+            {{ form.intima.errors }}
+            <label for="{{ form.intima.id_for_label }}" class='col-md-2'>Roupa íntima</label>
             <div class='col-md-1'>
+                {% render_field form.intima class+="form-control" %}
                 <input type='text' ng-model='acolhido.tamIntima' class='form-control'>
             </div>
-            <label class='col-md-1'>Calçado</label>
+            {{ form.calcado.errors }}
+            <label for="{{ form.calcado.id_for_label }}" class='col-md-1'>Calçado</label>
             <div class='col-md-1'>
+                {% render_field form.calcado class+="form-control" %}
                 <input type='text' ng-model='acolhido.tamSapato' class='form-control'>
             </div>
         </div>
 
         <label class="col-md-10 col-md-offset-1"><h3>Ficha Médica</h3><hr></label>
         <div class='form-group'>
-            <label class='col-md-2 col-md-offset-1'>Alergias</label>
+            {{ form.alergias.errors }}
+            <label for="{{ form.alergias.id_for_label }}" class='col-md-2 col-md-offset-1'>Alergias</label>
             <div class='col-md-8'>
+                {% render_field form.alergias class+="form-control" %}
                 <textarea ng-model='acolhido.alergias' class='form-control'></textarea>
             </div>
         </div>
         <div class='form-group'>
-            {{ form.cpf.errors }}
+            {{ form.etc.errors }}
             <label class='col-md-2 col-md-offset-1'>Tipo Sanguíneo</label>
             <div class='col-md-2'>
                 <select class='form-control' ng-model='acolhido.tipoSanguineo'>
