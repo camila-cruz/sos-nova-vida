@@ -17,6 +17,17 @@ $(document).ready(function() {
             console.log(i);
         }
     }
+
+    /* Formatação de inputs */
+    var mascaraCpf = new Cleave('.input-cpf', {
+        delimiters: ['.', '.', '-'],
+        blocks: [3, 3, 3, 2]
+    });
+
+    var mascaraTel = new Cleave ('.input-tel', {
+        phone: true,
+        phoneRegionCode: 'BR',
+    });
 });
 
 function clean() {
