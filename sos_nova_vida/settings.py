@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # App principal
     'sistema',
     'widget_tweaks',
+    'localflavor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
