@@ -11,6 +11,7 @@
     <script src="../static/src/jasny/js/jasny-bootstrap.min.js"></script>
     <script src="../static/src/js/cleave.min.js"></script>
     <script src="../static/src/js/cleave-phone.br.js"></script>
+    <script src="../static/src/js/jquery.autocomplete-address.min.js"></script>
 </head>
 <body>
     <header class="col-md-12 col-sm-12">
@@ -91,31 +92,7 @@
             {% block content %}
             {% endblock %}
         </section>
-        <script>
-           // $('input:not(:checkbox, :radio)').addClass("form-control");
-
-            // Adiciona uma animação para baixo quando o dropdown se expande
-            $('.dropdown').on('show.bs.dropdown', function() {
-                $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
-            });
-
-            // Adiciona uma animação para cima quando o dropdown se retrai
-            $('.dropdown').on('hide.bs.dropdown', function() {
-                $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
-            });
-
-            // Máscara para CPF
-            var mascaraCpf = new Cleave('.input-cpf', {
-                delimiters: ['.', '.', '-'],
-                blocks: [3, 3, 3, 2],
-            });
-
-            // Máscara para telefones
-            var mascaraTel = new Cleave ('.input-tel', {
-                phone: true,
-                phoneRegionCode: 'BR',
-            });
-        </script>
+        <script src="../static/src/js/main.js"></script>
     </div>
 </body>
 </html>

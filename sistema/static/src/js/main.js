@@ -1,35 +1,54 @@
 $(document).ready(function() {
-    // Adiciona bootstrap aos inputs necessários
-    $('input:not(:checkbox, :radio)').addClass("form-control");
-    //$('input:checkbox').removeClass("form-control");
-    $('select').addClass("form-control");
-    
-    // Colocar um try aqui: não abre a página de estoque depois de abrir a página de configuração
-    document.getElementById("id_imagem").type = "file";
-
-    // IDs dos inputs que contém data
-    var data = ["id_data_nasc", "id_data_entrada", "id_data", "id_data_validade"];
-    
-    // Para cada input, se não for nulo, adicionar o type 'date'
-    for (i = 0; i < 4; i++) {
-        if (data[i] !== null) {
-            document.getElementById(data[i]).type = "date";
-            console.log(i);
-        }
-    }
-
-    /* Formatação de inputs */
-    var mascaraCpf = new Cleave('.input-cpf', {
-        delimiters: ['.', '.', '-'],
-        blocks: [3, 3, 3, 2]
+    // Adiciona uma animação para baixo quando o dropdown se expande
+    $('.dropdown').on('show.bs.dropdown', function() {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
     });
 
-    var mascaraTel = new Cleave ('.input-tel', {
-        phone: true,
-        phoneRegionCode: 'BR',
+    // Adiciona uma animação para cima quando o dropdown se retrai
+    $('.dropdown').on('hide.bs.dropdown', function() {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+    });
+
+    /* Formatação de inputs */
+    // Máscara para CPF
+    try {
+        var mascaraCpf = new Cleave('.input-cpf', {
+            delimiters: ['.', '.', '-'],
+            blocks: [3, 3, 3, 2],
+        });
+    } catch (e) {}
+
+    // Mascara para CEP
+    try {
+        var mascaraCep = new Cleave('.input-cep', {
+            delimiters: ['-'],
+            blocks: [5, 3],
+        });
+    } catch (e) {}
+
+    // Máscara para telefones
+    try {
+        $('.input-tel').toArray().forEach(function(telefone){
+            new Cleave(telefone, {
+                phone: true,
+                phoneRegionCode: 'BR',
+            });
+        });
+    } catch (e) {}
+
+    // Mascara para processos jurídicos
+    try {
+        var mascaraProcesso = new Cleave('.input-processo', {
+            delimiters: ['-', '.', '.', '.', '.'],
+            blocks: [7, 2, 4, 1, 2, 4],
+        });
+    } catch (e) {}
+
+    $('#r_cep').autocompleteAddress({
+        city: 'input#r_cidade',
+        address: 'input#r_logradouro',
+        neighborhood: 'input#r_bairro',
+        state: 'input#r_uf',
     });
 });
 
-function clean() {
-    $('#txt_pia').val('');
-}
