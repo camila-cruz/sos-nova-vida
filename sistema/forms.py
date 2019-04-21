@@ -1,15 +1,37 @@
 from django import forms
 from .models import *
+from localflavor.br.forms import *
+from localflavor.br.br_states import *
 
 class AcolhidoForm(forms.ModelForm):
+    cpf = BRCPFField(required=False)
+    uf = BRStateSelect()
+    data_nasc = forms.DateField(input_formats=["%d/%m/%Y"])
+    data_entrada = forms.DateField(input_formats=["%d/%m/%Y"])
     class Meta:
         model = Acolhido
-        fields = ['nome', 'data_nasc', 'data_entrada', 'cid_natal', 'uf', 'nome_mae', 'nome_pai', 'nome_resp', 'imagem', 'cpf', 'rg', 'ssp', 'renda']
+        fields = ['nome', 'data_nasc', 'data_entrada', 'cid_natal', 'uf', 'cpf', 'rg', 'ssp', 'nome_mae', 'nome_pai', 'nome_resp', 'grau_resp', 'imagem', 'sangue', 'renda']
         
+class ResidenciaForm(forms.ModelForm):
+    class Meta:
+        model = Residencia
+        fields = ['cep', 'logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'uf']
+
+class TrabalhoForm(forms.ModelForm):
+    class Meta:
+        model = Trabalho
+        fields = ['empresa', 'cargo', 'salario', 'cep', 'logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'uf']
+
+class JuridicoForm(forms.ModelForm):
+    processo = BRProcessoField(required=False)
+    class Meta:
+        model = Juridico
+        fields = ['processo', 'comarca', 'nro_vara', 'vara']
+
 class DoadorForm(forms.ModelForm):
     class Meta:
         model = Doador
-        fields = ['nome', 'data_entrada', 'email', 'tel_residencial', 'tel_celular', 'voluntario', 'financeiro', 'vestuario', 'alimenticio']
+        fields = ['nome', 'data_entrada', 'email', 'tel_1', 'tel_2', 'voluntario', 'financeiro', 'vestuario', 'alimenticio']
 
 class MovimentacaoForm(forms.ModelForm):
     class Meta:

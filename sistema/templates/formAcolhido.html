@@ -4,7 +4,7 @@
 {% load widget_tweaks %}
 
 {% block content %}
-    <h1>[Angular] Cadastro de Acolhidos</h1>
+    <h1>Cadastro de Acolhidos</h1>
     <hr><br>
     <form enctype="multipart/form-data" action="post_acolhido/" method="post" class="form-horizontal" name='form'>
         {% csrf_token %}
@@ -44,11 +44,30 @@
             <label for="{{ form.uf.id_for_label }}" class="col-md-1">UF</label>
             <div class="col-md-2">
                 {% render_field form.uf class+="form-control" %}
-                <select class='form-control' ng-model='acolhido.dependente.uf' ng-options='uf.nome for uf in ufs'>
-                    <option value='' ng-disabled='true'>UF</option>
-                </select><br>
+                <br>
             </div>
         </div>
+
+        <div class="form-group">    <!-- Analisar o maxlength na model e a interferência dele aqui -->
+            {{ form.cpf.errors }}
+            <label for="{{ form.cpf.id_for_label }}" class="col-md-2 col-md-offset-1">CPF</label>
+            <div class="col-md-3">
+                {% render_field form.cpf class+="form-control input-cpf" %}
+            </div>
+
+            {{ form.rg.errors }}
+            <label for="{{ form.rg.id_for_label }}" class="col-md-1">RG</label>
+            <div class="col-md-2">
+                {% render_field form.rg class+="form-control" %}
+            </div>
+
+            <!-- Órgão emissor -->
+            {{ form.ssp.errors }}
+            <label for="{{ form.ssp.id_for_label }}" class="col-md-1">SSP</label>
+            <div class="col-md-1">
+                {% render_field form.ssp class+="form-control" %}
+            </div>
+        </div><br>
 
         <div class="form-group">
             {{ form.nome_mae.errors }}
@@ -83,7 +102,7 @@
         <div class="form-group">
             {{ form.nome_resp.errors }}
             <label for="{{ form.nome_resp.id_for_label }}" class="col-md-2 col-md-offset-1">Nome do responsável</label>
-            <div class="col-md-8">
+            <div class="col-md-5">
                 <div class="input-group">
                     {% render_field form.nome_resp class+="form-control" %}
                     <div class="input-group-btn">
@@ -93,41 +112,16 @@
                     </div>
                 </div>
             </div>
+
+            {{ form.grau_resp.errors }}
+            <label for="{{ form.grau_resp.id_for_label }}" class="col-md-1">Parentesco</label>
+            <div class="col-md-2">
+                {% render_field form.grau_resp class="form-control" %}
+                
+            </div>
         </div><br>
+
         <!-- Não esquecer de adicionar cada campo no forms.py, senão não aparece na tela -->
-        <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Grau de parentesco</label>
-            <div class="col-md-3">
-                <select class='form-control' ng-model='acolhido.dependente.parentesco'><br>
-                    <option value='mae'>MÃE</option>
-                    <option value='pai'>PAI</option>
-                    <option value='filho'>FILHO(A)</option>
-                    <option value='sobrinho'>SOBRINHO(A)</option>
-                    <option value='' ng-disabled='true'>NENHUM</option>
-                </select><br>
-            </div>
-        </div>
-
-        <div class="form-group">    <!-- Analisar o maxlength na model e a interferência dele aqui -->
-            {{ form.cpf.errors }}
-            <label for="{{ form.cpf.id_for_label }}" class="col-md-2 col-md-offset-1">CPF</label>
-            <div class="col-md-2">
-                {% render_field form.cpf class+="form-control input-cpf" %}
-            </div>
-
-            {{ form.rg.errors }}
-            <label for="{{ form.rg.id_for_label }}" class="col-md-1">RG</label>
-            <div class="col-md-2">
-                {% render_field form.rg class+="form-control" %}
-            </div>
-
-            <!-- Órgão emissor -->
-            {{ form.ssp.errors }}
-            <label for="{{ form.ssp.id_for_label }}" class="col-md-1">SSP</label>
-            <div class="col-md-2">
-                {% render_field form.ssp class+="form-control" %}
-            </div>
-        </div><br>
 
         <div class="form-group">
             {{ form.renda.errors }}
@@ -150,12 +144,12 @@
 
         <label class="col-md-10 col-md-offset-1"><h3>Vestimentas</h3><hr></label>
         <div class="form-group">
-            {{ form.camiseta.errors }}
+            <!--{{ form.camiseta.errors }}-->
             <label for="{{ form.camiseta.id_for_label }}" class="col-md-1 col-md-offset-1">Camiseta</label>
-            <div class="col-md-1">
+            <!--<div class="col-md-1">
                 {% render_field form.camiseta class+="form-control" %}
                 <input type='text' ng-model='acolhido.tamCamiseta' class='form-control'>
-            </div>
+            </div>-->
             {{ form.calca.errors }}
             <label for="{{ form.calca.id_for_label }}" class="col-md-1">Calça</label>
             <div class="col-md-1">
@@ -176,6 +170,43 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="row text-center">
+                <div class="col-md-2 col-md-offset-2">
+                    {{ form.camiseta.errors }}
+                    <label for="{{ form.camiseta.id_for_label }}">
+                        <img src="../static/img/graph-bg.png">
+                        <div>Camiseta</div>
+                    </label>
+                    {% render_field form.camiseta class="form-control" %}
+                </div>
+                <div class="col-md-2">
+                    {{ form.financeiro.errors }}
+                    <label for="{{ form.financeiro.id_for_label }}" class="lblDoador">
+                        {{ form.financeiro }}
+                        <img src="../static/img/graph-bg.png">
+                        <div>Dinheiro</div>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    {{ form.vestuario.errors }}
+                    <label for="{{ form.vestuario.id_for_label }}" class="lblDoador">
+                        {{ form.vestuario }}
+                        <img src="../static/img/graph-bg.png">
+                        <div>Roupas</div>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    {{ form.alimenticio.errors }}
+                    <label for="{{ form.alimenticio.id_for_label }}" class="lblDoador">
+                        {{ form.alimenticio }}
+                        <img src="../static/img/graph-bg.png">
+                        <div>Alimentos</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <label class="col-md-10 col-md-offset-1"><h3>Ficha Médica</h3><hr></label>
         <div class='form-group'>
             {{ form.alergias.errors }}
@@ -186,20 +217,11 @@
             </div>
         </div>
         <div class='form-group'>
-            {{ form.etc.errors }}
-            <label class='col-md-2 col-md-offset-1'>Tipo Sanguíneo</label>
+            {{ form.sangue.errors }}
+            <label for="{{ form.sangue.id_for_label }}" class='col-md-2 col-md-offset-1'>Tipo Sanguíneo</label>
             <div class='col-md-2'>
-                <select class='form-control' ng-model='acolhido.tipoSanguineo'>
-                    <option value='desconhecido'>Desconhecido</option>
-                    <option value='A-'>A-</option>
-                    <option value='A+'>A+</option>
-                    <option value='B-'>B-</option>
-                    <option value='B-'>B+</option>
-                    <option value='AB-'>AB-</option>
-                    <option value='AB+'>AB+</option>
-                    <option value='O-'>O-</option>
-                    <option value='O+'>O+</option>
-                </select><br>
+                {% render_field form.sangue class="form-control" %}
+                <br>
             </div>
 
             <!-- colocar input group -->
@@ -233,12 +255,14 @@
         <hr>
         <label class="col-md-10 col-md-offset-1"><h3>Residência atual</h3><hr></label>
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">CEP</label>
+            {{ form_r.cep.errors }}
+            <label for="{{ form_r.cep.id_for_label }}" class="col-md-2 col-md-offset-1">CEP</label>
             <div class="col-md-3">
                 <div class="input-group">
-                    <input type="text" ng-model='acolhido.cep' via-cep='cep' class="form-control">
+                    {% render_field form_r.cep class+="form-control input-cep" id="r_cep"%}
+                    <!--<input type="text" ng-model='acolhido.cep' via-cep='cep' class="form-control">-->
                     <div class="input-group-btn">
-                        <button class="btn btn-default btn-input-group" type="button">
+                        <button class="btn btn-default btn-input-group" type="button" id="btnCepR">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
@@ -247,109 +271,142 @@
         </div><br>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Endereço</label>
+            {{ form_r.logradouro.errors }}
+            <label for="{{ form_r.logradouro.id_for_label }}" class="col-md-2 col-md-offset-1">Endereço</label>
             <div class="col-md-5">
-                <input type="text" ng-model='acolhido.endereco' class="form-control" via-cep='logradouro'><br>
+                {% render_field form_r.logradouro class+="form-control" id="r_logradouro"%}
+                <!--{{ form_r.logradouro }}-->
+                <!--<input type="text" ng-model='acolhido.endereco' class="form-control" via-cep='logradouro'>-->
+                <br>
             </div>
 
-            <label class="col-md-1">Número</label>
+            {{ form_r.numero.errors }}
+            <label for="{{ form_r.numero.id_for_label }}" class="col-md-1">Número</label>
             <div class="col-md-2">
-                <input type="text" ng-model='acolhido.numero' class="form-control"><br>
+                {% render_field form_r.numero class+="form-control" id="r_numero" %}
+                <!--<input type="text" ng-model='acolhido.numero' class="form-control">-->
+                <br>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Complemento</label>
+            {{ form_r.complemento.errors }}
+            <label for="{{ form_r.complemento.id_for_label }}" class="col-md-2 col-md-offset-1">Complemento</label>
             <div class="col-md-2">
-                <input type="text" ng-model='acolhido.compl' class="form-control"><br>
+                {% render_field form_r.complemento class+="form-control" id="r_complemento" %}
+                <!--<input type="text" ng-model='acolhido.compl' class="form-control">-->
+                <br>
             </div>
 
-            <label class="col-md-1 col-md-offset-1">Bairro</label>
+            {{ form_r.bairro.errors }}
+            <label for="{{ form_r.bairro.id_for_label }}" class="col-md-1 col-md-offset-1">Bairro</label>
             <div class="col-md-4">
-                <input type="text" ng-model='acolhido.bairro' class="form-control" via-cep='bairro'><br>
+                {% render_field form_r.bairro class+="form-control" id="r_bairro" %}
+                <!--<input type="text" ng-model='acolhido.bairro' class="form-control" via-cep='bairro'>-->
+                <br>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Cidade</label>
+            {{ form_r.cidade.errors }}
+            <label for="{{ form_r.cidade.id_for_label }}" class="col-md-2 col-md-offset-1">Cidade</label>
             <div class="col-md-5">
-                <input type="text" ng-model='acolhido.cidade' class="form-control" via-cep='localidade'><br>
+                {% render_field form_r.cidade class+="form-control" id="r_cidade" %}
+                <!--<input type="text" ng-model='acolhido.cidade' class="form-control" via-cep='localidade'>-->
+                <br>
             </div>
 
-            <label class="col-md-1">UF</label>
+            {{ form_r.uf.errors }}
+            <label for="{{ form_r.uf.id_for_label }}" class="col-md-1">UF</label>
             <div class="col-md-2">
-                <select class='form-control' ng-model='acolhido.uf' ng-options='uf for uf in ufs'>
-                    <option value='' ng-disabled='false'>UF</option>
-                </select><br>
+                {% render_field form_r.uf class="form-control" id="r_uf" %}
+                <br>
             </div>
         </div>
 
         <hr>
         <label class="col-md-10 col-md-offset-1"><h3>Local de trabalho</h3><hr></label>
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Nome do local</label>
+            {{ form_t.empresa.errors }}
+            <label for="{{ form_t.empresa.id_for_label }}" class="col-md-2 col-md-offset-1">Nome do local</label>
             <div class="col-md-4">
-                <input type="text" ng-model='acolhido.empresa' class="form-control"><br>
+                {% render_field form_t.empresa class+="form-control" %}
+                <br>
             </div>
 
-            <label class="col-md-1">Função</label>
+            {{ form_t.cargo.errors }}
+            <label for="{{ form_t.cargo.id_for_label }}" class="col-md-1">Função</label>
             <div class="col-md-3">
-                <input type="text" ng-model='acolhido.cargo' class="form-control"><br>
+                {% render_field form_t.cargo class+="form-control" %} 
+                <br>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">CEP</label>
+            {{ form_t.cep.errors }}
+            <label for="{{ form_t.cep.id_for_label }}" class="col-md-2 col-md-offset-1">CEP</label>
             <div class="col-md-3">
                 <div class="input-group">
-                    <input type="text" ng-model='acolhido.Tcep' via-cep='cep' class="form-control">
+                    {% render_field form_t.cep class+="form-control" id="t_cep" %}
                     <div class="input-group-btn">
-                        <button class="btn btn-default btn-input-group" type="button">
+                        <button class="btn btn-default btn-input-group" type="button" id="btnCepT">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <label class="col-md-1 col-md-offset-1">Salário</label>
+            {{ form_t.salario.errors }}
+            <label for="{{ form_t.salario.id_for_label }}" class="col-md-1 col-md-offset-1">Salário</label>
             <div class="col-md-3">
                 <div class="input-group">
-                    <span class="input-group-addon">R$</span><input type="text" ng-model='acolhido.salario' class="form-control">
+                    <span class="input-group-addon">R$</span>{% render_field form_t.salario class+="form-control" %}
                 </div>
             </div>
         </div><br>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Endereço</label>
+            {{ form_t.logradouro.errors }}
+            <label for="{{ form_t.logradouro.id_for_label }}" class="col-md-2 col-md-offset-1">Endereço</label>
             <div class="col-md-5">
-                <input type="text" ng-model='acolhido.Tendereco' via-cep='logradouro' class="form-control"><br>
+                {% render_field form_t.logradouro class+="form-control" id="t_logradouro" %}
+                <br>
             </div>
 
-            <label class="col-md-1">Número</label>
+            {{ form_t.numero.errors }}
+            <label for="{{ form_t.numero.id_for_label }}" class="col-md-1">Número</label>
             <div class="col-md-2">
-                <input type="text" ng-model='acolhido.Tnumero' class="form-control"><br>
+                {% render_field form_t.numero class+="form-control" id="t_numero" %}
+                <br>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Complemento</label>
+            {{ form_t.complemento.errors }}
+            <label for="{{ form_t.complemento.id_for_label }}" class="col-md-2 col-md-offset-1">Complemento</label>
             <div class="col-md-2">
-                <input type="text" ng-model='acolhido.Tcompl' class="form-control"><br>
+                {% render_field form_t.complemento class+="form-control" id="t_complemento" %}
+                <br>
             </div>
 
-            <label class="col-md-1 col-md-offset-1">Bairro</label>
+            {{ form_t.bairro.errors }}
+            <label for="{{ form_t.bairro.id_for_label }}" class="col-md-1 col-md-offset-1">Bairro</label>
             <div class="col-md-4">
-                <input type="text" ng-model='acolhido.Tbairro' via-cep='bairro' class="form-control"><br>
+                {% render_field form_t.bairro class+="form-control" id="t_bairro" %}
+                <br>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Cidade</label>
+            {{ form_t.cidade.errors }}
+            <label for="{{ form_t.cidade.id_for_label }}" class="col-md-2 col-md-offset-1">Cidade</label>
             <div class="col-md-5">
-                <input type="text" ng-model='acolhido.Tcidade' via-cep='localidade' class="form-control"><br>
+                {% render_field form_t.cidade class+="form-control" id="t_cidade" %}
+                <br>
             </div>
 
-            <label class="col-md-1">UF</label>
+            {{ form_t.uf.errors }}
+            <label for="{{ form_t.uf.id_for_label }}" class="col-md-1">UF</label>
             <div class="col-md-2">
                 <select class='form-control' ng-model='acolhido.Tuf' ng-options='uf for uf in ufs'>
                     <option value='' ng-disabled='true'>UF</option>
@@ -357,140 +414,45 @@
             </div>
         </div>                                
         <br>
-        <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Nº do processo</label>
-            <div class="col-md-3">
-                <input type="text" ng-model='acolhido.processo' class="form-control"><br>
-            </div>
-
-            <label class="col-md-1">Comarca</label>
-            <div class="col-md-4">
-                <input type="text" ng-model='acolhido.comarca' class="form-control"><br>
-            </div>
-        </div>
         <hr>
         <label class="col-md-10 col-md-offset-1"><h3>Dados jurídicos</h3><hr></label>
         <br>
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Nº do processo</label>
-            <div class="col-md-3">
-                <input type="text" ng-model='acolhido.processo' class="form-control"><br>
+            {{ form_j.processo.errors }}
+            <label for="{{ form_j.processo.id_for_label }}" class="col-md-2 col-md-offset-1">Nº do processo</label>
+            <div class="col-md-4">
+                {% render_field form_j.processo class+="form-control input-processo" %}
+                <br>
             </div>
 
-            <label class="col-md-1">Comarca</label>
-            <div class="col-md-4">
-                <input type="text" ng-model='acolhido.comarca' class="form-control"><br>
+            {{ form_j.comarca.errors }}
+            <label for="{{ form_j.comarca.id_for_label }}" class="col-md-1">Comarca</label>
+            <div class="col-md-3">
+                {% render_field form_j.comarca class+="form-control" %}
+                <br>
             </div>
         </div>
         <!-- 15ª vara de infância de Suzano, por exemplo -->
         <div class="form-group">
-            <label class="col-md-2 col-md-offset-1">Nº da vara</label>
+            {{ form_j.nro_vara.errors }}
+            <label for="{{ form_j.nro_vara.id_for_label }}" class="col-md-2 col-md-offset-1">Nº da vara</label>
             <div class="col-md-2">
-                <input type="text" ng-model='acolhido.numVara' class="form-control"><br>
+                {% render_field form_j.nro_vara class+="form-control" %}
+                <br>
             </div>
 
-            <label class="col-md-1">Vara</label>
+            {{ form_j.vara.errors }}
+            <label for="{{ form_j.vara.id_for_label }}" class="col-md-1">Vara</label>
             <div class="col-md-5">
-                <input type="text" ng-model='acolhido.vara' class="form-control"><br>
+                {% render_field form_j.vara class+="form-control" %}
+                <br>
             </div>                                        
         </div>
         <br><br>
         <div class="row">
             <div class="col-md-7 text-right">
-                <button class="btn btn-primary" type='reset'>Limpar</button>
+                <button class="btn btn-primary" type="reset">Limpar</button>
                 <button class="btn btn-success" ng-click='cadastrarAcolhido(acolhido)'>Salvar</button>
-            </div>
-        </div>
-    </form>
-
-    <!-- ///////////////////////////////////////////////////////////////////////- -->
-    <h1>[Python] Cadastro de acolhidos</h1><hr><br>
-    <form enctype="multipart/form-data" action="post_acolhido/" method="post">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="row">
-            <div class="col-md-8">
-                {{ form.nome.errors }}
-                <label for="{{ form.nome.id_for_label }}">Nome completo</label><br>
-                {{ form.nome }}<br>
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ form.data_nasc.errors }}
-                        <label for="{{ form.data_nasc.id_for_label }}">Data de nascimento</label><br>
-                        {{ form.data_nasc }}
-                    </div>
-                    <div class="col-md-offset-1 col-md-5">
-                        {{ form.data_entrada.errors }}
-                        <label for="{{ form.data_entrada.id_for_label }}">Data de entrada</label><br>
-                        {{ form.data_entrada }}<br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-9">
-                        {{ form.local_nasc.errors }}
-                        <label for="{{ form.local_nasc.id_for_label }}">Local de nascimento</label><br>
-                        {{ form.local_nasc }}
-                    </div>
-                    <div class="col-md-offset-1 col-md-2">
-                        
-                        <label for="{{ form.uf.id_for_label }}">UF</label><br>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-offset-1 col-md-2">
-                {{ form.imagem.errors }}
-                <label for="{{ form.imagem.id_for_label }}">Foto</label><br>
-                <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 240px; height: 180px;"></div>
-                    <div>
-                        <span class="btn btn-default btn-file">
-                            <span class="fileinput-new">Selecione a imagem</span>
-                            <span class="fileinput-exists">Alterar</span>
-                            {{ form.imagem }}
-                            <!-- <input type="file" name="..."> -->
-                        </span>
-                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
-                    </div>
-                </div><br>
-            </div><br>
-        </div>
-
-        <div class="row">
-            <div class="col-md-9">
-                {{ form.nome_mae.errors }}
-                <label for="{{ form.nome_mae.id_for_label }}">Nome da mãe</label><br>
-                {{ form.nome_mae }}
-            </div>
-            <div class="col-md-offset-1 col-md-2">
-                <br><input type="checkbox">
-                <label>Responsável</label><br><br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-9">
-                {{ form.nome_pai.errors }}
-                <label for="{{ form.nome_pai.id_for_label }}">Nome do pai</label><br>
-                {{ form.nome_pai }}
-            </div>
-            <div class="col-md-offset-1 col-md-2">
-                <br><input type="checkbox">
-                <label>Responsável</label><br><br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                {{ form.nome_resp.errors }}
-                <label for="{{ form.nome_resp.id_for_label }}">Nome do responsável</label><br>
-                {{ form.nome_resp }}<br><br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 text-right">
-                <button class="btn btn-primary" type="reset">Limpar</button> <button type="submit" class="btn btn-success">Salvar</button>
             </div>
         </div>
     </form>

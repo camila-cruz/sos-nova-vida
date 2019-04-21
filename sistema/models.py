@@ -1,25 +1,46 @@
 from django.db import models
 from datetime import date
+from localflavor.br.models import *
 
 # Create your models here.
 
 # Model do Acolhido da instituicao
 class Acolhido(models.Model):
+    TIPO_SANGUINEO = (
+        ('', 'Desconhecido'),
+        ('A+', 'A+'),
+        ('A-', 'A-'),
+        ('B+', 'B+'),
+        ('B-', 'B-'),
+        ('AB+', 'AB+'),
+        ('AB-', 'AB-'),
+        ('O+', 'O+'),
+        ('O-', 'O-'),
+    )
+    GRAU_PARENTESCO = (
+        ('MÃE', 'Mãe'),
+        ('PAI', 'Pai'),
+        ('AVÓ', 'Avó'),
+        ('AVÔ', 'Avô'),
+        ('OUT', 'Outro'),
+        ('NEN', 'Nenhum')
+    )
     nome = models.CharField(max_length=40, blank=True)
     data_nasc = models.DateField(default=date.today)
     data_entrada = models.DateField(default=date.today)
     cid_natal = models.CharField(max_length=50, blank=True)
-    uf = models.CharField(max_length=2, default="SP", blank=True)
+    uf = BRStateField(max_length=2, default="SP", blank=True)
     imagem = models.ImageField(upload_to='img_acolhidos', default='media/default.png', blank=True)
     nome_mae = models.CharField(max_length=40, default="", blank=True)
     resp_mae = models.BooleanField(default=False, blank=True)
     nome_pai = models.CharField(max_length=40, default="", blank=True)
     resp_pai = models.BooleanField(default=False, blank=True)
     nome_resp = models.CharField(max_length=40, default="", blank=True)
-    resp_resp = models.BooleanField(default=False, blank=True)
-    cpf = models.CharField(max_length=11, blank=True)
+    #resp_resp = models.BooleanField(default=False, blank=True)
+    grau_resp = models.CharField(max_length=3, choices=GRAU_PARENTESCO, blank=True)
+    cpf = models.CharField(max_length=14, blank=True)
     rg = models.CharField(max_length=11, blank=True)
-    ssp = models.CharField(max_length=2, blank=True)
+    ssp = BRStateField(max_length=2, blank=True)
     renda = models.DecimalField(max_digits=6, decimal_places=2, default=0, blank=True, null=True)
     sexo = models.CharField(max_length=1, blank=True)
     camiseta = models.CharField(max_length=2, blank=True)
@@ -27,47 +48,52 @@ class Acolhido(models.Model):
     intima = models.CharField(max_length=1, blank=True)
     calcado = models.CharField(max_length=2, blank=True)
     alergias = models.TextField(blank=True)
-    sangue = models.CharField(max_length=1, blank=True)
+    sangue = models.CharField(max_length=3, choices=TIPO_SANGUINEO, blank=True)
     qtd_aborto = models.IntegerField(blank=True, null=True)
 
     def __str__(self):  # Equivalente ao .toString do Java
         return self.nome
 
 class Residencia(models.Model):
-    cep = models.CharField(max_length=8)
-    logradouro = models.CharField(max_length=65)
-    numero = models.CharField(max_length=4)
-    complemento = models.CharField(max_length=15)
-    bairro = models.CharField(max_length=30)
-    cidade = models.CharField(max_length=30)
-    uf = models.CharField(max_length=2)
+    acolhido = models.ForeignKey(Acolhido)
+    cep = models.CharField(max_length=9, blank=True)
+    logradouro = models.CharField(max_length=65, blank=True)
+    numero = models.CharField(max_length=4, blank=True)
+    complemento = models.CharField(max_length=15, blank=True)
+    bairro = models.CharField(max_length=30, blank=True)
+    cidade = models.CharField(max_length=30, blank=True)
+    uf = models.CharField(max_length=2, blank=True)
+
+    def __str__(self):
+        return str(self.id) + str(self.acolhido.id) + self.acolhido.nome
 
 class Trabalho(models.Model):
-    empresa = models.CharField(max_length=30)
-    cargo = models.CharField(max_length=20)
-    salario = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    cep = models.CharField(max_length=8)
-    logradouro = models.CharField(max_length=65)
-    numero = models.CharField(max_length=4)
-    complemento = models.CharField(max_length=15)
-    bairro = models.CharField(max_length=30)
-    cidade = models.CharField(max_length=30)
-    uf = models.CharField(max_length=2)
+    acolhido = models.ForeignKey(Acolhido)
+    empresa = models.CharField(max_length=30, blank=True)
+    cargo = models.CharField(max_length=20, blank=True)
+    salario = models.DecimalField(max_digits=6, decimal_places=2, default=0, blank=True, null=True)
+    cep = models.CharField(max_length=9, blank=True)
+    logradouro = models.CharField(max_length=65, blank=True)
+    numero = models.CharField(max_length=4, blank=True)
+    complemento = models.CharField(max_length=15, blank=True)
+    bairro = models.CharField(max_length=30, blank=True)
+    cidade = models.CharField(max_length=30, blank=True)
+    uf = models.CharField(max_length=2, blank=True)
 
 class Juridico(models.Model):
-    processo = models.CharField(max_length=25)
-    comarca = models.CharField(max_length=30)
-    nro_vara = models.CharField(max_length=2)
-    vara = models.CharField(max_length=20)
+    acolhido = models.ForeignKey(Acolhido)
+    processo = models.CharField(max_length=25, blank=True)
+    comarca = models.CharField(max_length=30, blank=True)
+    nro_vara = models.CharField(max_length=2, blank=True)
+    vara = models.CharField(max_length=20, blank=True)
 
 class Doador(models.Model):
     nome = models.CharField(max_length=40)
     data_entrada = models.DateField(default=date.today)
     email = models.EmailField(max_length=30)
     #imagem = models.ImageField(upload_to='img_doadores', default='media/default.png')
-    tel_residencial = models.CharField(max_length=10)
-    tel_celular = models.CharField(max_length=10)
-    tel_comercial = models.CharField(max_length=10)
+    tel_1 = models.CharField(max_length=14)
+    tel_2 = models.CharField(max_length=14)
     voluntario = models.BooleanField(default=False)
     financeiro = models.BooleanField(default=False)
     vestuario = models.BooleanField(default=False)

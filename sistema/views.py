@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from .models import *
 from .forms import *
 
-
 # Create your views here.
 
 # Pagina principal
@@ -13,14 +12,51 @@ def index(request):
 
 # Acolhidos
 def form_acolhido(request):
-    form = AcolhidoForm()
-    return render(request, 'formAcolhido.html', {'form': form})
+    form_a = AcolhidoForm()
+    form_r = ResidenciaForm(prefix="form_r")
+    form_t = TrabalhoForm(prefix="form_t")
+    form_j = JuridicoForm()
+    return render(request, 'formAcolhido.html', {
+        'form': form_a,
+        'form_r': form_r,
+        'form_t': form_t,
+        'form_j': form_j
+        })
 
 def post_acolhido(request):
-    form = AcolhidoForm(request.POST, request.FILES)
-    if form.is_valid():
-        print (form.cleaned_data)
+    form_a = AcolhidoForm(request.POST, request.FILES)
+    form_r = ResidenciaForm(request.POST, request.FILES, prefix="form_r")
+    form_t = TrabalhoForm(request.POST, request.FILES, prefix="form_t")
+    form_j = JuridicoForm(request.POST, request.FILES)
+    if form_a.is_valid():
+        #a = form_a.save(commit=False)
+        print (form_a.cleaned_data)
+        #a.save()
         #form.save(commit = True)
+    else:
+        print("Não deu pro acolhido")
+
+    if form_r.is_valid():
+        #f = form_r.save(commit=False)
+        #f.acolhido = a
+        print (form_r.cleaned_data)
+        #print (f)
+    else:
+        print (form_r.cleaned_data)
+        print("Não deu pra residencia")
+
+    if form_t.is_valid():
+        #t = form_t.save(commit=False)
+        print (form_t.cleaned_data)
+    else:
+        print("Não deu pro trabalho")
+
+    if form_j.is_valid():
+        #j = form_j.save(commit=False)
+        print (form_j.cleaned_data)
+    else:
+        print("Não deu pro juridico")
+
     return HttpResponseRedirect('/')
 
 def cons_acolhido(request):
