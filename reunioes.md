@@ -15,7 +15,11 @@
 ## Para as próximas reuniões:
 * Revisar todas as models do diagrama de classe
 * Opção de vestimentas de acolhido e voluntariado do doador como no "Boteco do Gallão"
-* Verificar nomes dos formulários no HTML
+* Verificar nomes dos formulários no HTML (tem a ver com as URLs?)
 * Melhorar botões dos formulários
 * Trocar o azul do sistema por uma cor mais interessante
 * Ajustar a tela de doações para ficar mais "intituitiva", com uma doação cheia de itens
+* Refazer todas as URLs dentro dos formulários, para algo menos chumbado
+* Como gravar um acolhido com foreign keys das tabelas de residência e trabalho?
+* Colocar FK de Acolhido nas models de Residência e Trabalho
+* É necessário especificar o tipo de telefone do doador? (Casa, celular ou comercial)
