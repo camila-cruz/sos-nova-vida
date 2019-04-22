@@ -290,19 +290,31 @@ input[type='checkbox'] {
     width: 100%;
     margin: 2%;
 }
-.lblDoador > input { /* HIDE RADIO */
-    visibility: hidden; /* Makes input not-clickable */
-    position: absolute; /* Remove input from document flow */
+.lblDoador > input { /* Esconde o radio input */
+    visibility: hidden; /* Impede de ser clicado */
+    position: absolute; /* Tira do meio do documento */
 }
-.lblDoador > input + img { /* IMAGE STYLES */
-    cursor:pointer;
+.lblDoador > input + img { /* Estilo da imagem */
+    cursor: pointer;
     /*border:2px solid transparent;*/
     border: 2px solid rgb(214, 190, 190);
     border-radius: 50%;
     padding: 5%;
     opacity: 0.5;
 }
-.lblDoador > input:checked + img { /* (RADIO CHECKED) IMAGE STYLES */
+.lblDoador > input:checked + img { /* Estilo da imagem quando selecionada */
     border:2px solid #f00;
     opacity: 1;
+}
+
+/* *************************** FORMULÁRIO DE ACOLHIDO ******************************* */
+
+.tamVest {
+    display: flex;
+    justify-content: space-around;
+    padding: 0% 10% 0% 10%;
+}
+
+.lblVest {
+    margin: 0% 5%;
 }

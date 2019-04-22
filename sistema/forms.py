@@ -10,7 +10,8 @@ class AcolhidoForm(forms.ModelForm):
     data_entrada = forms.DateField(input_formats=["%d/%m/%Y"])
     class Meta:
         model = Acolhido
-        fields = ['nome', 'data_nasc', 'data_entrada', 'cid_natal', 'uf', 'cpf', 'rg', 'ssp', 'nome_mae', 'nome_pai', 'nome_resp', 'grau_resp', 'imagem', 'sangue', 'renda']
+        fields = ['nome', 'data_nasc', 'data_entrada', 'cid_natal', 'uf', 'cpf', 'rg', 'ssp', 'nome_mae', 
+        'nome_pai', 'nome_resp', 'grau_resp', 'imagem', 'sangue', 'renda', 'camiseta', 'calca', 'intima', 'calcado', 'qtd_aborto']
         
 class ResidenciaForm(forms.ModelForm):
     class Meta:
