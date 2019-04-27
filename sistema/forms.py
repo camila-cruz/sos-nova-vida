@@ -18,11 +18,6 @@ class ResidenciaForm(forms.ModelForm):
         model = Residencia
         fields = ['cep', 'logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'uf']
 
-class TrabalhoForm(forms.ModelForm):
-    class Meta:
-        model = Trabalho
-        fields = ['empresa', 'cargo', 'salario', 'cep', 'logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'uf']
-
 class JuridicoForm(forms.ModelForm):
     processo = BRProcessoField(required=False)
     class Meta:

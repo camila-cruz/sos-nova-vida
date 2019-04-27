@@ -36,7 +36,6 @@ class Acolhido(models.Model):
     nome_pai = models.CharField(max_length=40, default="", blank=True)
     resp_pai = models.BooleanField(default=False, blank=True)
     nome_resp = models.CharField(max_length=40, default="", blank=True)
-    #resp_resp = models.BooleanField(default=False, blank=True)
     grau_resp = models.CharField(max_length=3, choices=GRAU_PARENTESCO, blank=True)
     cpf = models.CharField(max_length=14, blank=True)
     rg = models.CharField(max_length=11, blank=True)
@@ -66,19 +65,6 @@ class Residencia(models.Model):
 
     def __str__(self):
         return str(self.id) + str(self.acolhido.id) + self.acolhido.nome
-
-class Trabalho(models.Model):
-    acolhido = models.ForeignKey(Acolhido)
-    empresa = models.CharField(max_length=30, blank=True)
-    cargo = models.CharField(max_length=20, blank=True)
-    salario = models.DecimalField(max_digits=6, decimal_places=2, default=0, blank=True, null=True)
-    cep = models.CharField(max_length=9, blank=True)
-    logradouro = models.CharField(max_length=65, blank=True)
-    numero = models.CharField(max_length=4, blank=True)
-    complemento = models.CharField(max_length=15, blank=True)
-    bairro = models.CharField(max_length=30, blank=True)
-    cidade = models.CharField(max_length=30, blank=True)
-    uf = models.CharField(max_length=2, blank=True)
 
 class Juridico(models.Model):
     acolhido = models.ForeignKey(Acolhido)

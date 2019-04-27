@@ -14,19 +14,16 @@ def index(request):
 def form_acolhido(request):
     form_a = AcolhidoForm()
     form_r = ResidenciaForm(prefix="form_r")
-    form_t = TrabalhoForm(prefix="form_t")
     form_j = JuridicoForm()
     return render(request, 'formAcolhido.html', {
         'form': form_a,
         'form_r': form_r,
-        'form_t': form_t,
         'form_j': form_j
         })
 
 def post_acolhido(request):
     form_a = AcolhidoForm(request.POST, request.FILES)
     form_r = ResidenciaForm(request.POST, request.FILES, prefix="form_r")
-    form_t = TrabalhoForm(request.POST, request.FILES, prefix="form_t")
     form_j = JuridicoForm(request.POST, request.FILES)
     if form_a.is_valid():
         #a = form_a.save(commit=False)
@@ -45,12 +42,6 @@ def post_acolhido(request):
         print (form_r.cleaned_data)
         print("Não deu pra residencia")
 
-    if form_t.is_valid():
-        #t = form_t.save(commit=False)
-        print (form_t.cleaned_data)
-    else:
-        print("Não deu pro trabalho")
-
     if form_j.is_valid():
         #j = form_j.save(commit=False)
         print (form_j.cleaned_data)
@@ -60,7 +51,7 @@ def post_acolhido(request):
     return HttpResponseRedirect('/')
 
 def cons_acolhido(request):
-    acolhidos = {} # Acolhido.objects.all()
+    acolhidos = Acolhido.objects.all() #{} 
     return render(request, 'consultaAcolhido.html', {'acolhidos': acolhidos})
 
 # PIA
