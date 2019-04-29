@@ -4,41 +4,41 @@ from django.views.static import serve
 from . import views
 
 urlpatterns = [
-    url('^$', views.index),
-    url('index', views.index),
+    url(r'^$', views.index),
+    url(r'index', views.index),
 
     # Acolhidos
-    url('formAcolhido', views.form_acolhido),
-    url('^post_acolhido/$', views.post_acolhido),
-    url('consultaAcolhido', views.cons_acolhido),
-
-    # PIA
-    url('formPIA', views.form_pia),
-    url('([0-9]+)/$', views.get_pia),  # Procurar sobre o name='blabla'
-    url('^post_pia', views.post_pia),
+    url(r'formAcolhido', views.form_acolhido),
+    url(r'^post_acolhido/$', views.post_acolhido),
+    url(r'consultaAcolhido', views.cons_acolhido),
 
     # Doadores
-    url('formDoador', views.form_doador),
-    url('^post_doador/$', views.post_doador),
-    url('consultaDoador', views.cons_doador),
+    url(r'formDoador', views.form_doador),
+    url(r'^post_doador/$', views.post_doador),
+    url(r'consultaDoador', views.cons_doador),
 
     # Doações
-    url('formDoacao', views.form_doacao),
-    url('^post_doacao/$', views.post_doacao),
-    url('consultaDoacao', views.cons_doacao),
+    url(r'formDoacao', views.form_doacao),
+    url(r'^post_doacao/$', views.post_doacao),
+    url(r'consultaDoacao', views.cons_doacao),
 
     # Estoque
-    url('formProduto', views.form_produto),
-    url('consultaEstoque', views.cons_estoque),
-    url('^post_produto/$', views.post_produto),
+    url(r'formProduto', views.form_produto),
+    url(r'consultaEstoque', views.cons_estoque),
+    url(r'^post_produto/$', views.post_produto),
 
     # Contabilidade
-    url('formContabilidade', views.form_contab),
-    url('^formMovimentacao', views.get_movimentacao),
-    url('^post_mov/$', views.post_mov),
+    url(r'formContabilidade', views.form_contab),
+    url(r'^formMovimentacao', views.get_movimentacao),
+    url(r'^post_mov/$', views.post_mov),
 
     # Configurações
-    url('formConfig', views.form_config)
+    url(r'formConfig', views.form_config)
+
+    # PIA
+    url(r'formPIA', views.form_pia),
+    url(r'([0-9]+)/$', views.get_pia),  # Procurar sobre o name='blabla'
+    url(r'^post_pia', views.post_pia),
 
 ]
 
