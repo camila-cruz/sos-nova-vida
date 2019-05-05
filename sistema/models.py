@@ -49,6 +49,7 @@ class Acolhido(models.Model):
     alergias = models.TextField(blank=True)
     sangue = models.CharField(max_length=3, choices=TIPO_SANGUINEO, blank=True)
     qtd_aborto = models.IntegerField(blank=True, null=True)
+    ativo = models.BooleanField(default=True)
 
     def __str__(self):  # Equivalente ao .toString do Java
         return self.nome

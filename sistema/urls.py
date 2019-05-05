@@ -9,6 +9,7 @@ urlpatterns = [
 
     # Acolhidos
     url(r'formAcolhido', views.form_acolhido),
+    url(r'getAcolhido/(?P<id>\d+)/$', views.get_acolhido),
     url(r'^post_acolhido/$', views.post_acolhido),
     url(r'consultaAcolhido', views.cons_acolhido),
 
@@ -33,7 +34,7 @@ urlpatterns = [
     url(r'^post_mov/$', views.post_mov),
 
     # Configurações
-    url(r'formConfig', views.form_config)
+    url(r'formConfig', views.form_config),
 
     # PIA
     url(r'formPIA', views.form_pia),

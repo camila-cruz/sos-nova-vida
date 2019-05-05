@@ -21,6 +21,17 @@ def form_acolhido(request):
         'form_j': form_j
     })
 
+def get_acolhido(request, id=None):
+    acolhido = get_object_or_404(Acolhido, id=id)
+    form_a = AcolhidoForm(request.POST or None, instance=acolhido)
+    form_r = ResidenciaForm(request.POST or None, instance=acolhido)
+    form_j = JuridicoForm(request.POST or None, instance=acolhido)
+    return render(request, 'formAcolhido.html', {
+        'form': form_a,
+        'form_r': form_r,
+        'form_j': form_j
+    })
+
 def post_acolhido(request):
     form_a = AcolhidoForm(request.POST, request.FILES)
     form_r = ResidenciaForm(request.POST, request.FILES)

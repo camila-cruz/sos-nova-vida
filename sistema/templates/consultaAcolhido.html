@@ -22,20 +22,31 @@
         {% for acolhido in acolhidos %}
         <tr>
             <td><input type="checkbox"></td>
-            <td>{{acolhido.nome}}</td>
-            <td>{{acolhido.data_nasc | date:'dd/MM/yy'}}</td>
-            <td>{{acolhido.data_entrada | date:'dd/MM/yy'}}</td> 
-            <td>{{acolhido.sangue}}</td> <!-- Atualizar de acordo com a doc -->
-            <td class="text-center" ng-if="acolhido.ativo == 1"><a class="btn btn-info" href="#!/consulta/acolhido/{{acolhido.id}}" role="button">Editar</a>
+            <td>{{ acolhido.nome }}</td>
+            <td>{{ acolhido.data_nasc | date:'d/M/Y' }}</td>
+            <td>{{ acolhido.data_entrada | date:'d/M/Y' }}</td> 
+            <td>{{ acolhido.sangue }}</td> <!-- Atualizar de acordo com a doc -->
+            <td class="text-center">
+                <a class="btn btn-info" href="/getAcolhido/{{ acolhido.id }}" role="button">Editar</a>
+            </td>
+            <td><a class="btn btn-warning">
+                {% if acolhido.ativo == True %}
+                    Desativar
+                {% else %}
+                    Ativar
+                {% endif %}
+                </a>
+            </td>
+            <!-- <td class="text-center" ng-if="acolhido.ativo == 1"><a class="btn btn-info" href="#!/consulta/acolhido/{{acolhido.id}}" role="button">Editar</a>
                 <button class="btn btn-warning" ng-click="desativarAcolhido(acolhido, 0)">Desativar</button></td>
             <td class="text-center" ng-if="acolhido.ativo == 0"><a class="btn btn-info" href="#!/consulta/acolhido/{{acolhido.id}}" role="button">Editar</a>
-                <button class="btn btn-warning" ng-click="desativarAcolhido(acolhido, 1)">Ativar</button></td>
+                <button class="btn btn-warning" ng-click="desativarAcolhido(acolhido, 1)">Ativar</button></td> -->
         </tr>
         {% endfor %}
     </table>
 
     <!-- MODAL PARA CRIAR LISTAS -->
-<div class="modal fade" id="mdlCriarLista" tabindex="-1" role="dialog">
+    <div class="modal fade" id="mdlCriarLista" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
