@@ -31,16 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # App principal
+    'sistema',
+    'widget_tweaks',
+    'localflavor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # App principal
-    'sistema',
-    'widget_tweaks',
-    'localflavor',
 ]
 
 MIDDLEWARE = [
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'pt-br'
 #LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Brazil/West'
+TIME_ZONE = 'America/Sao_Paulo'
 #TIME_ZONE = 'UTC-3'
 #TIME_ZONE = 'UTC'
 
