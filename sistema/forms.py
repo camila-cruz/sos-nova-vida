@@ -6,8 +6,8 @@ from localflavor.br.br_states import *
 class AcolhidoForm(forms.ModelForm):
     cpf = BRCPFField(required=False)
     uf = BRStateSelect()
-    data_nasc = forms.DateField(input_formats=["%d/%m/%Y"])
-    data_entrada = forms.DateField(input_formats=["%d/%m/%Y"])
+    data_nasc = forms.DateField(input_formats=["%d/%m/%Y", "%Y-%m-%d"])
+    data_entrada = forms.DateField(input_formats=["%d/%m/%Y", "%Y-%m-%d"])
     class Meta:
         model = Acolhido
         fields = ['nome', 'data_nasc', 'data_entrada', 'cid_natal', 'uf', 'cpf', 'rg', 'ssp', 'nome_mae', 
