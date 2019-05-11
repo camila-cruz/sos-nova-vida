@@ -23,9 +23,14 @@ def form_acolhido(request):
 
 def get_acolhido(request, id=None):
     acolhido = get_object_or_404(Acolhido, id=id)
+
+    # Retorna uma tupla com o obj e um bool se ele teve que ser criado ou não
+    residencia = Residencia.objects.get_or_create(acolhido=acolhido)[0]
+    juridico = Juridico.objects.get_or_create(acolhido=acolhido)[0]
+
     form_a = AcolhidoForm(request.POST or None, instance=acolhido)
-    form_r = ResidenciaForm(request.POST or None, instance=acolhido)
-    form_j = JuridicoForm(request.POST or None, instance=acolhido)
+    form_r = ResidenciaForm(request.POST or None, instance=residencia)
+    form_j = JuridicoForm(request.POST or None, instance=juridico)
     return render(request, 'formAcolhido.html', {
         'form': form_a,
         'form_r': form_r,

@@ -27,7 +27,7 @@
             <td>{{ acolhido.data_entrada | date:'d/M/Y' }}</td> 
             <td>{{ acolhido.sangue }}</td> <!-- Atualizar de acordo com a doc -->
             <td class="text-center">
-                <a class="btn btn-info" href="/getAcolhido/{{ acolhido.id }}" role="button">Editar</a>
+                <a class="btn btn-info" href="{% url 'get_acolhido' id=acolhido.id %}" role="button">Editar</a>
             </td>
             <td><a class="btn btn-warning">
                 {% if acolhido.ativo == True %}
