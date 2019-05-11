@@ -148,7 +148,7 @@
                 <div class="lblVest">
                     {{ form.camiseta.errors }}
                     <label for="{{ form.camiseta.id_for_label }}">
-                        <img src="../static/img/shirt.png" class="img-responsive">
+                        <img src="{% static 'img/shirt.png' %}" class="img-responsive">
                         <div>Camiseta</div>
                     </label>
                     {% render_field form.camiseta class+="form-control text-center" %}
@@ -156,7 +156,7 @@
                 <div class="lblVest">
                     {{ form.calca.errors }}
                     <label for="{{ form.calca.id_for_label }}">
-                        <img src="../static/img/jean.png" class="img-responsive">
+                        <img src="{% static 'img/jean.png' %}" class="img-responsive">
                         <div>Calça</div>
                     </label>
                     {% render_field form.calca class+="form-control text-center" %}
@@ -164,7 +164,7 @@
                 <div class="lblVest">
                     {{ form.intima.errors }}
                     <label for="{{ form.intima.id_for_label }}">
-                        <img src="../static/img/underwear.png" class="img-responsive">
+                        <img src="{% static 'img/underwear.png' %}" class="img-responsive">
                         <div>Roupa íntima</div>
                     </label>
                     {% render_field form.intima class+="form-control text-center" %}
@@ -172,7 +172,7 @@
                 <div class="lblVest">
                     {{ form.calcado.errors }}
                     <label for="{{ form.calcado.id_for_label }}">
-                        <img src="../static/img/shoe.png" class="img-responsive">
+                        <img src="{% static 'img/shoe.png' %}" class="img-responsive">
                         <div>Calçado</div>
                     </label>
                     {% render_field form.calcado class+="form-control text-center" %}
@@ -211,7 +211,7 @@
             {{ form.qtd_aborto.errors }}
             <label for="{{ form.qtd_aborto.id_for_label }}" class="col-md-1 text-right">Quantos?</label>
             <div class="col-md-1">
-                {% render_field form.qtd_aborto class+="form-control" value="0" min="0" %}
+                {% render_field form.qtd_aborto class+="form-control" min="0" max="99" oninput="validity.valid||(value=this.empty);" %}
             </div>
         </div>
 

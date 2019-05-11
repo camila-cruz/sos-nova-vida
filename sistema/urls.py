@@ -4,14 +4,19 @@ from django.views.static import serve
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index),
+    url(r'^$', views.index, name="index"),
     url(r'index', views.index),
 
     # Acolhidos
-    url(r'formAcolhido', views.form_acolhido),
-    url(r'getAcolhido/(?P<id>\d+)/$', views.get_acolhido),
+    url(r'^acolhido/novo/$', views.form_acolhido, name="cad_acolhido"),
+    url(r'^acolhido/(?P<id>\d+)/$', views.get_acolhido, name="get_acolhido"),
     url(r'^post_acolhido/$', views.post_acolhido),
-    url(r'consultaAcolhido', views.cons_acolhido),
+    url(r'^acolhido/$', views.cons_acolhido, name="cons_acolhido"),
+
+    # url(r'formAcolhido', views.form_acolhido),
+    # url(r'getAcolhido/(?P<id>\d+)/$', views.get_acolhido),
+    # url(r'^post_acolhido/$', views.post_acolhido),
+    # url(r'consultaAcolhido', views.cons_acolhido),
 
     # Doadores
     url(r'formDoador', views.form_doador),
