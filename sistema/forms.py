@@ -27,7 +27,7 @@ class JuridicoForm(forms.ModelForm):
 class DoadorForm(forms.ModelForm):
     class Meta:
         model = Doador
-        fields = ['nome', 'data_entrada', 'email', 'tel_1', 'tel_2', 'voluntario', 'financeiro', 'vestuario', 'alimenticio']
+        fields = ['nome', 'email', 'tel_1', 'tel_2', 'voluntario', 'financeiro', 'vestuario', 'alimenticio']
 
 class MovimentacaoForm(forms.ModelForm):
     class Meta:

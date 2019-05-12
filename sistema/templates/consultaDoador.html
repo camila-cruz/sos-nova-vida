@@ -11,16 +11,15 @@
         <tr>
             <th></th>
             <th>Nome</th>
-            <th>Telefone residencial</th>
-            <th>Celular</th>
+            <th colspan="2">Telefones</th>
             <th>E-mail</th>
         </tr>
         {% for doador in doadores %}
         <tr>
             <td><input type='checkbox' ng-model='doador.selecionado'></td>
             <td>{{ doador.nome }}</td>
-            <td>{{ doador.tel_residencial }}</td>
-            <td>{{ doador.tel_celular }}</td>
+            <td>{{ doador.tel_1 }}</td>
+            <td>{{ doador.tel_2 }}</td>
             <td>{{ doador.email }}</td>
         </tr>
         {% endfor %}

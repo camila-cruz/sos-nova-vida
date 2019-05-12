@@ -77,10 +77,10 @@ class Juridico(models.Model):
 class Doador(models.Model):
     nome = models.CharField(max_length=40)
     data_entrada = models.DateField(default=date.today)
-    email = models.EmailField(max_length=30)
+    email = models.EmailField(max_length=30, blank=True)
     #imagem = models.ImageField(upload_to='img_doadores', default='media/default.png')
-    tel_1 = models.CharField(max_length=14)
-    tel_2 = models.CharField(max_length=14)
+    tel_1 = models.CharField(max_length=14, blank=True)
+    tel_2 = models.CharField(max_length=14, blank=True)
     voluntario = models.BooleanField(default=False)
     financeiro = models.BooleanField(default=False)
     vestuario = models.BooleanField(default=False)

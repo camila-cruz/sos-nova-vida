@@ -101,12 +101,14 @@ def form_doador(request):
 def post_doador(request):
     form = DoadorForm(request.POST, request.FILES)
     print(form.errors)
+    print(form.cleaned_data)
     if form.is_valid():
-        form.save(commit = True)
+        form.save() # commit é True se não for mencionado
+    #     form.save(commit = True)
     return HttpResponseRedirect('/')
 
 def cons_doador(request):
-    doadores = {} # Doador.objects.all()
+    doadores = Doador.objects.all()
     return render(request, 'consultaDoador.html', {'doadores': doadores})
 
 # Doacoes
