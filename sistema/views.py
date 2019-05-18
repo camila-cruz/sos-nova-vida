@@ -134,12 +134,14 @@ def form_produto(request):
 def post_produto(request):
     form = ProdutoForm(request.POST)
     if form.is_valid():
-        form.save(commit = True)
+        print (form.cleaned_data)
+        #form.save(commit = True)
     return HttpResponseRedirect('/')
 
 def cons_estoque(request):
     produtos = Produto.objects.all()
-    return render(request, 'consultaEstoque.html', {'produtos': produtos})
+    form_p = ProdutoForm()
+    return render(request, 'consultaEstoque.html', {'form_p': form_p, 'produtos': produtos})
 
 # Contabilidade
 def form_contab(request):

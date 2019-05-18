@@ -7,7 +7,8 @@ from localflavor.br.models import *
 # Model do Acolhido da instituicao
 class Acolhido(models.Model):
     TIPO_SANGUINEO = (
-        ('', 'Desconhecido'),
+        ('', 'Selecione'),
+        ('NI', 'Não informado'),
         ('A+', 'A+'),
         ('A-', 'A-'),
         ('B+', 'B+'),
@@ -101,9 +102,9 @@ class Movimentacao(models.Model):
 class Produto(models.Model):
     descricao = models.CharField(max_length=150)
     qtd = models.IntegerField()
-    unidade = models.CharField(max_length=20)
-    data_validade = models.DateField(default=date.today)
-    preco_entrada = models.DecimalField(max_digits=7, decimal_places=2)
+    # unidade = models.CharField(max_length=20)
+    # data_validade = models.DateField(default=date.today)
+    # preco_entrada = models.DecimalField(max_digits=7, decimal_places=2)
     
 class Doacao(models.Model):
     descricao = models.CharField(max_length=150)

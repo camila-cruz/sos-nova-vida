@@ -1,10 +1,11 @@
 {% extends 'menu.html'%}
 {% load staticfiles %}
+{% load widget_tweaks %}
 
 {% block content %}
     <h1>Controle de Estoque</h1>
     <hr>
-    <input type="text" class="form-control" ng-model='criterioDeBusca' placeholder="Pesquise um produto">
+    <input type="text" class="form-control" placeholder="Pesquise um produto">
     <hr>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdlCriarLista" ng-click="criarLista( produtos )">Criar lista</button>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#mdlViewLista"  ng-click='carregarListas()'>Visualizar listas</button>
@@ -155,20 +156,23 @@
                     <h3 class="modal-title">Cadastro de Produto</h4>
                 </div> 
                 <!-- ///////////////////////////////////// -->
-                <div class="modal-body">
-                    <form>
-                        <label>Descrição</label><br>
-                        <input type="text" class="form-control" ng-model='novoProduto.descricao'><br>
+                <form name="produtoForm" action="post_produto/" method="post">
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        <label for="{{ form_p.descricao.id_for_label }}">Descrição</label><br>
+                        {% render_field form_p.descricao class+="form-control" %}<br>                        
     
-                        <label>Quantidade inicial</label><br>
-                        <input type="text" class="form-control" ng-model='novoProduto.qtd'><br>
-                    </form>
-                </div> 
+                        <label for="{{ form_p.qtd.id_for_label }}">Quantidade inicial</label><br>
+                        {% render_field form_p.qtd class+="form-control" %}<br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </div>
+                </form>
                 <!-- ///////////////////////////////////// -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" ng-click='adicionaProduto( novoProduto )' data-dismiss='modal'>Salvar</button>
-                </div>
             </div> <!-- modal content -->
         </div> <!-- modal dialog -->
     </div> <!-- modal fade -->    

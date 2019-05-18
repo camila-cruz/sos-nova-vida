@@ -38,7 +38,7 @@ class MovimentacaoForm(forms.ModelForm):
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['descricao', 'qtd', 'unidade', 'data_validade', 'preco_entrada']
+        fields = ['descricao', 'qtd']   # , 'unidade', 'data_validade', 'preco_entrada'
 
 class DoacaoForm(forms.ModelForm):
     class Meta:
