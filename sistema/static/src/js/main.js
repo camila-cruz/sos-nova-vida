@@ -83,6 +83,27 @@ $(document).ready(function() {
             })
         });
     });
+
+
+    /* Adicionando roupas e alimentos nas tabelas de doações (funciona com tabela vazia) */
+    $('.js-btn-add').click(function(e){
+        var fg = $(e.target).closest(".form-group")
+        var fs = $(e.target).closest("fieldset")
+        
+        $(fg).find('table tr:last').after(
+            '<tr><td>' +  $(fs).find(".js-tipo-item").val() + '</td><td>' + $(fs).find(".js-qtd-item").val() + '</td>' +
+            '<td class="text-center"><button type="button" class="close js-btn-close" style="float:none;"><span>&times;</span></button></td>' + '</tr>')
+
+        $(fs).find(".js-tipo-item").val("")
+        $(fs).find(".js-qtd-item").val("")
+    });
+
+    /* Para excluir item da tabela (não tá funcionando) */
+    $('.js-btn-close').click(function(e){
+        var tr = $(e.target).closest("tr")
+        console.log(tr)
+        
+    });
 });
 
 /****** Funções para capturar o CSRF Token quando usar AJAX ******/

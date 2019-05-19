@@ -30,19 +30,6 @@
         <div class="form-group">
             <div class="col-md-9 col-md-offset-1">
                 <h3>Doações em dinheiro</h3><hr>
-                <label class="col-md-2">Valor</label>
-                <div class="col-md-10">
-                    <div class="input-group">
-                        <span class="input-group-addon">R$</span>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>   
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-9 col-md-offset-1">
-                <h3>Doações em dinheiro</h3><hr>
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>Valor</th>
@@ -60,7 +47,7 @@
         <div class="form-group">
             <div class="col-md-9 col-md-offset-1">
                 <h3>Doações de roupa</h3><hr>
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered tbRoupa">
                     <tr>
                         <th>Tipo de peça</th>
                         <th>Quantidade</th>
@@ -69,21 +56,20 @@
                     <tr>
                         <td>Blusa</td>
                         <td>10</td>
-                        <td class="text-center"><button type="button" class="close" style="float:none;" ><span>&times;</span></button></td>
+                        <td class="text-center"><button type="button" class="close js-btn-close" style="float:none;" ><span>&times;</span></button></td>
                     </tr>
                 </table>
-                <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#mdlViewLista">Novo item</button>
                 <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#maisRoupa">Adicionar mais itens</button>
                 <div class="collapse" id="maisRoupa">
                     <br>
                     <fieldset>
                         <label>Qual é a peça de roupa?</label><br>
-                        <input type="text" class="form-control" ng-model='novoItem.descricao'><br>
+                        <input type="text" class="form-control js-tipo-item"><br>
 
                         <label>Quantidade</label><br>
-                        <input type="number" class="form-control" ng-model='novoItem.qtdAlterar'><br>
+                        <input type="number" class="form-control js-qtd-item"><br>
 
-                        <button type="button" class="btn btn-info" ng-click='adicionarItemNaLista( novoItem )' >Adicionar</button>
+                        <button type="button" class="btn btn-info js-btn-add">Adicionar</button>
                     </fieldset>
                 </div>
             </div>
@@ -101,21 +87,20 @@
                     <tr>
                         <td>Arroz</td>
                         <td>10 Kg</td>
-                        <td class="text-center"><button type="button" class="close" style="float:none;" ><span>&times;</span></button></td>
+                        <td class="text-center"><button type="button" class="close js-btn-close" style="float:none;" ><span>&times;</span></button></td>
                     </tr>
                 </table>
-                <button class="btn pull-right">Novo item</button>
                 <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#maisAlimento">Adicionar mais itens</button>
                 <div class="collapse" id="maisAlimento">
                     <br>
                     <fieldset>
                         <label>Qual é o item?</label><br>
-                        <input type="text" class="form-control" ng-model='novoItem.descricao'><br>
+                        <input type="text" class="form-control js-tipo-item"><br>
 
                         <label>Quantidade</label><br>
-                        <input type="number" class="form-control" ng-model='novoItem.qtdAlterar'><br>
+                        <input type="number" class="form-control js-qtd-item"><br>
 
-                        <button type="button" class="btn btn-info" ng-click='adicionarItemNaLista( novoItem )' >Adicionar</button>
+                        <button type="button" class="btn btn-info js-btn-add">Adicionar</button>
                     </fieldset>
                 </div>
             </div>
@@ -128,32 +113,5 @@
             </div>
         </div>
     </form>
-
-    <!-- MODAL PARA VISUALIZAR LISTAS -->
-    <div class="modal fade" id="mdlViewLista" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                    <h3 class="modal-title">Visualizar listas</h3>
-                </div> 
-                <!-- ///////////////////////////////////// -->
-                <div class="modal-body">
-                    <label>Digite mais um item</label><br>
-                    <input type="text" class="form-control" ng-model='novoItem.descricao'><br>
-
-                    <label>Digite a quantidade desse item</label><br>
-                    <input type="number" class="form-control" ng-model='novoItem.qtdAlterar'><br>
-
-                </div> 
-                <!-- ///////////////////////////////////// -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-info">Adicionar</button>
-                </div>
-            </div> <!-- modal content -->
-        </div> <!-- modal dialog -->
-    </div> <!-- modal fade -->
+   
 {% endblock %}
