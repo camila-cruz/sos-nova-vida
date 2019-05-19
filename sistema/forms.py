@@ -35,6 +35,11 @@ class MovimentacaoForm(forms.ModelForm):
         #fields = ['valor', 'tipo', 'descricao', 'data', 'qtd']
         fields = ['valor', 'tipo', 'descricao', 'data', 'qtd']
 
+class EstoqueForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = ['qtd']
+
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto

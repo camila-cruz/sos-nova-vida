@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from .models import *
 from .forms import *
 
@@ -135,13 +135,38 @@ def post_produto(request):
     form = ProdutoForm(request.POST)
     if form.is_valid():
         print (form.cleaned_data)
-        #form.save(commit = True)
+        form.save(commit = True)
     return HttpResponseRedirect('/')
 
 def cons_estoque(request):
     produtos = Produto.objects.all()
     form_p = ProdutoForm()
-    return render(request, 'consultaEstoque.html', {'form_p': form_p, 'produtos': produtos})
+    form_e = EstoqueForm()
+    return render(request, 'consultaEstoque.html', {'form_p': form_p, 'form_e': form_e, 'produtos': produtos})
+
+def mov_estoque(request, id=None):
+    form = EstoqueForm(request.POST)
+    tipo = request.POST["tipo"]
+
+    if form.is_valid():
+        produto = Produto.objects.get(id=id)
+        if tipo == "saida":
+            produto.qtd -= form.cleaned_data['qtd']
+        elif tipo == "entrada":
+            produto.qtd += form.cleaned_data['qtd']
+        
+        produto.save()
+        qtd = produto.qtd
+
+    print (tipo)
+
+    dados = {
+        'tipo': tipo,
+        'id': id,
+        'qtd': qtd,
+    }
+    #return HttpResponseRedirect('/')
+    return JsonResponse(dados)
 
 # Contabilidade
 def form_contab(request):

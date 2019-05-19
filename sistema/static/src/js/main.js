@@ -50,5 +50,59 @@ $(document).ready(function() {
         neighborhood: 'input#r_bairro',
         state: 'input#r_uf',
     });
+
+    $('.roupa').on('click', 'button', function(){
+        $('.tbRoupa tr:last').after('<tr><td>' +  $("#tipoRoupa").val() + '</td><td></td></tr>')
+    });
+
+    /* Para enviar o token no header da requisição */
+    var csrftoken = getCookie('csrftoken');
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+    
+    /* Altera e atualiza a quantidade do produto no estoque */
+    $('.btn-estoque').click(function() {
+        var btnClicado = $(this).context.id
+        $('#estoqueForm').unbind().submit(function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form')            
+            $.ajax({
+                url: form.attr('action'),   // "/mov_estoque/" + form.produto.id
+                data: form.serialize() + "&tipo=" + btnClicado,
+                //dataType: 'json',
+                method: "POST",
+                success: function(dados) {
+                    $('#qtd-prod-' + dados.id).text(dados.qtd)
+                    //alert(dados.tipo + " de " + dados.qtd + " itens de " + dados.id)
+                }
+            })
+        });
+    });
 });
 
+/****** Funções para capturar o CSRF Token quando usar AJAX ******/
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}

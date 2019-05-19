@@ -37,17 +37,23 @@
         <tr>
             <!-- <tr ng-repeat='produto in produtos | filter: { descricao: criterioDeBusca } | orderBy: criterioDeOrdenacao:direcaoDaOrdenacao'
         ng-class='{ success: produto.qtd > 5, danger: produto.qtd < 5 }'> -->
-            <td><input type="checkbox" ng-model='produto.selecionado'></td>
+            <td><input type="checkbox"></td>
             <td>{{ produto.descricao }}</td>
-            <td>{{ produto.qtd }}</td>
+            <td id="qtd-prod-{{ produto.id }}">{{ produto.qtd }}</td>
             <td class="td-botoes">
-                <button class="btn btn-danger btn-xs btn-estoque pull-left" ng-click='movimentaEstoque( produto, -1 )'>
-                    <span class="glyphicon glyphicon-minus"></span>
-                </button>
-                <input type="number" class="ipt-estoque" ng-model='produto.qtdAlterar' ng-init='produto.qtdAlterar=1' size="8" >
-                <button class="btn btn-success btn-xs btn-estoque pull-right" ng-click='movimentaEstoque( produto, 1 )' >
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
+                <!-- Conferir se funciona com mais produtos ou se vai precisar de formset -->
+                <form id="estoqueForm" method="POST" action="mov_estoque/{{ produto.id }}/">
+                    {% csrf_token %}
+                    {{ form_e.non_field_errors }}
+                    <button class="btn btn-danger btn-xs btn-estoque pull-left" id="saida">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                    {% render_field form_e.qtd class+="ipt-estoque" type="number" value="0"%}
+                    <!-- <input type="number" class="ipt-estoque" ng-model='produto.qtdAlterar' ng-init='produto.qtdAlterar=1' size="8" > -->
+                    <button class="btn btn-success btn-xs btn-estoque pull-right" id="entrada">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </form>
             </td>
         </tr>
         {% endfor %}
@@ -159,7 +165,7 @@
                 <form name="produtoForm" action="post_produto/" method="post">
                     <div class="modal-body">
                         {% csrf_token %}
-                        {{ form.non_field_errors }}
+                        {{ form_p.non_field_errors }}
 
                         <label for="{{ form_p.descricao.id_for_label }}">Descrição</label><br>
                         {% render_field form_p.descricao class+="form-control" %}<br>                        

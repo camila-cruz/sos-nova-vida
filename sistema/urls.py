@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'formProduto', views.form_produto),
     url(r'consultaEstoque', views.cons_estoque),
     url(r'^post_produto/$', views.post_produto),
+    url(r'^mov_estoque/(?P<id>\d+)/$', views.mov_estoque),
 
     # Contabilidade
     url(r'formContabilidade', views.form_contab),
