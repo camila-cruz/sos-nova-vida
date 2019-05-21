@@ -12,7 +12,7 @@
         <h2>ACESSO RÁPIDO</h2><hr>
         <div class="row botoes-inicio">
             <ul>
-                <a href="#!/cadastro/acolhido" role="button">
+                <a href="{% url 'cad_acolhido' %}" role="button">
                     <li class="col-md-3">
                         <span class="glyphicon glyphicon-heart-empty icon-inicio"></span><br><br>
                         <div>
@@ -20,7 +20,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="#!/cadastro/doador">
+                <a href="{% url 'cad_doador' %}">
                     <li class="col-md-3 col-md-offset-1">
                         <span class="glyphicon glyphicon-thumbs-up icon-inicio"></span><br><br>
                         <div>
@@ -28,7 +28,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="#!/estoque">
+                <a href="consultaEstoque.html">
                     <li class="col-md-3 col-md-offset-1">
                         <span class="glyphicon glyphicon-shopping-cart icon-inicio"></span><br><br>
                         <div>

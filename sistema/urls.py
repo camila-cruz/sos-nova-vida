@@ -19,7 +19,7 @@ urlpatterns = [
     # url(r'consultaAcolhido', views.cons_acolhido),
 
     # Doadores
-    url(r'formDoador', views.form_doador),
+    url(r'formDoador', views.form_doador, name="cad_doador"),
     url(r'^post_doador/$', views.post_doador),
     url(r'consultaDoador', views.cons_doador),
 
@@ -30,7 +30,7 @@ urlpatterns = [
 
     # Estoque
     url(r'formProduto', views.form_produto),
-    url(r'consultaEstoque', views.cons_estoque),
+    url(r'consultaEstoque', views.cons_estoque, name="estoque"),
     url(r'^post_produto/$', views.post_produto),
     url(r'^mov_estoque/(?P<id>\d+)/$', views.mov_estoque),
 
