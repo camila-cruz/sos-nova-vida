@@ -56,7 +56,7 @@ class Acolhido(models.Model):
         return self.nome
 
 class Residencia(models.Model):
-    acolhido = models.ForeignKey(Acolhido)
+    acolhido = models.ForeignKey(Acolhido, on_delete=models.CASCADE)
     cep = models.CharField(max_length=9, blank=True)
     logradouro = models.CharField(max_length=65, blank=True)
     numero = models.CharField(max_length=4, blank=True)
@@ -69,7 +69,7 @@ class Residencia(models.Model):
         return str(self.id) + str(self.acolhido.id) + self.acolhido.nome
 
 class Juridico(models.Model):
-    acolhido = models.ForeignKey(Acolhido)
+    acolhido = models.ForeignKey(Acolhido, on_delete=models.CASCADE)
     processo = models.CharField(max_length=25, blank=True)
     comarca = models.CharField(max_length=30, blank=True)
     nro_vara = models.CharField(max_length=2, blank=True)
