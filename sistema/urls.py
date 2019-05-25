@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'formDoador', views.form_doador, name="cad_doador"),
     url(r'^post_doador/$', views.post_doador),
     url(r'consultaDoador', views.cons_doador),
+    url(r'^src_doador/$', views.src_doador),
 
     # Doações
     url(r'formDoacao', views.form_doacao),

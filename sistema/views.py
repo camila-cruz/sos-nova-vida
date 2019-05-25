@@ -111,6 +111,19 @@ def cons_doador(request):
     doadores = Doador.objects.all()
     return render(request, 'consultaDoador.html', {'doadores': doadores})
 
+def src_doador(request):
+    palavra = request.GET.get('term', '')
+    doadores = Doador.objects.filter(nome__icontains=palavra)
+    resultado = []
+    for d in doadores:
+        d_json = {}     # TEM que ser label e value, senão não funciona
+        d_json['label'] = d.nome    # O que vai aparecer nos resultados da pesquisa
+        d_json['value'] = d.nome    # O que vai aparecer ao selecionar o resultado
+        d_json['id'] = d.id
+        resultado.append(d_json)
+
+    return JsonResponse(resultado, safe=False)
+
 # Doacoes
 def form_doacao(request):
     form = DoacaoForm()

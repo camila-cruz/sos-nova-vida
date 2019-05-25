@@ -104,6 +104,11 @@ $(document).ready(function() {
         console.log(tr)
         
     });
+
+    $("#txtDoador").autocomplete({
+        source: '/src_doador/'
+    });
+
 });
 
 /****** Funções para capturar o CSRF Token quando usar AJAX ******/
