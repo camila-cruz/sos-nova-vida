@@ -1,0 +1,118 @@
+<!-- Carrega o menu lateral e o cabeçalho da página -->
+{% extends 'menu.html'%}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>{{ acolhido.nome }}</h1>
+    <hr>
+    <div>
+        <a class="btn btn-info" href="{% url 'edit_acolhido' id=acolhido.id %}">Editar</a>
+        <a class="btn btn-info">Desativar</a>
+        <a class="btn btn-info btn-imprimir">Imprimir</a>
+    </div>
+    <hr>
+    <div id="printable">
+        <!-- <h3>Nome completo</h3> {{ acolhido.nome }}<br>
+        <h3>Idade</h3> {{ acolhido.data_nasc }}
+        <h3>Data de entrada</h3> {{ acolhido.data_entrada }} -->
+        <div class="col-md-6"> 
+            <h3>Informações pessoais</h3><br>
+            <dl class="dl-horizontal">
+        <!-- <dl> -->
+                <dt>Nome completo</dt>
+                <dd>{{ acolhido.nome }}</dd>
+                <dt>Sexo</dt>
+                <dd></dd>
+                <dt>Data de nascimento</dt>
+                <dd>{{ acolhido.data_nasc }}</dd>
+                <dt>Data de entrada</dt>
+                <dd></dd>
+                <dt>Cidade Natal</dt>
+                <dd></dd>
+                <dt>UF</dt>
+                <dd></dd>
+                <dt>Nome da mãe</dt>
+                <dd></dd>
+                <dt>Nome do pai</dt>
+                <dd></dd>
+                <dt>Nome do responsável</dt>
+                <dd></dd>
+                <dt>CPF</dt>
+                <dd></dd>
+                <dt>RG</dt>
+                <dd></dd>
+                <dt>SSP</dt>
+                <dd></dd>
+                <dt>Renda</dt>
+                <dd></dd>
+                <dt>Camiseta</dt>
+                <dd></dd>
+                <dt>Calça</dt>
+                <dd></dd>
+                <dt>Roupa íntima</dt>
+                <dd></dd>
+                <dt>Calçado</dt>
+                <dd></dd>
+                <dt>Alergias</dt>
+                <dd></dd>
+                <dt>Tipo sanguíneo</dt>
+                <dd></dd>
+                <dt>Abortos</dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+            </dl>
+        </div>
+
+        <div class="col-md-6"> 
+            <h3>Endereço</h3><br>
+            <dl class="dl-horizontal">
+        <!-- <dl> -->
+                <dt>Logradouro</dt>
+                <dd></dd>
+                <dt>Número</dt>
+                <dd></dd>
+                <dt>Complemento</dt>
+                <dd></dd>
+                <dt>Bairro</dt>
+                <dd></dd>
+                <dt>Cidade</dt>
+                <dd></dd>
+                <dt>UF</dt>
+                <dd></dd>
+                <dt>CEP</dt>
+                <dd></dd>
+            </dl>
+        </div>
+
+        <div class="col-md-6"> 
+            <h3>Jurídico</h3><br>
+            <dl class="dl-horizontal">
+        <!-- <dl> -->
+                <dt>Processo</dt>
+                <dd></dd>
+                <dt>Comarca</dt>
+                <dd></dd>
+                <dt>Nº da vara</dt>
+                <dd></dd>
+                <dt>Vara</dt>
+                <dd></dd>
+            </dl>
+        </div>
+        
+    </div>
+
+    
+{% endblock %}

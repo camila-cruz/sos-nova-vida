@@ -10,6 +10,7 @@ urlpatterns = [
     # Acolhidos
     url(r'^acolhido/novo/$', views.form_acolhido, name="cad_acolhido"),
     url(r'^acolhido/(?P<id>\d+)/$', views.get_acolhido, name="get_acolhido"),
+    url(r'^acolhido/(?P<id>\d+)/edit$', views.edit_acolhido, name="edit_acolhido"),
     url(r'^post_acolhido/$', views.post_acolhido),
     url(r'^acolhido/$', views.cons_acolhido, name="cons_acolhido"),
 

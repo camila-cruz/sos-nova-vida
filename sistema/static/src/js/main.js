@@ -109,6 +109,12 @@ $(document).ready(function() {
         source: '/src_doador/'
     });
 
+    $(".btn-imprimir").click(function(){
+        $("#printable").printThis({
+            importCSS: true
+        });
+    })
+
 });
 
 /****** Funções para capturar o CSRF Token quando usar AJAX ******/
