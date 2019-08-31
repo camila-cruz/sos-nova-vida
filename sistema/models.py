@@ -107,12 +107,18 @@ class Produto(models.Model):
     # preco_entrada = models.DecimalField(max_digits=7, decimal_places=2)
     
 class Doacao(models.Model):
-    descricao = models.CharField(max_length=150)
-    tipo_doacao = models.CharField(max_length=10)   # Bens, Dinheiro e Tempo
-    #doador
+    doador = models.ForeignKey(Doador, on_delete=models.SET_NULL, null=True)
+    data = models.DateField(default=date.today)
+
+class ItemDoacao(models.Model):
+    id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='itens')
+    tipo = models.CharField(max_length=10)   # Roupa ou Alimento
+    descricao = models.CharField(max_length=30)
     qtd = models.IntegerField()
+
+class DinheiroDoacao(models.Model):
+    id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='dinheiro')
     valor = models.DecimalField(max_digits=7, decimal_places=2)
-    # Doador
 
 class Caixa(models.Model):
     vlr_disponivel = models.DecimalField(max_digits=7, decimal_places=2)

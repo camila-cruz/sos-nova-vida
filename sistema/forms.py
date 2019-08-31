@@ -48,7 +48,7 @@ class ProdutoForm(forms.ModelForm):
 class DoacaoForm(forms.ModelForm):
     class Meta:
         model = Doacao
-        fields = ['descricao', 'tipo_doacao', 'qtd', 'valor']
+        fields = ['doador', 'data']
 
 class ConfiguracaoForm(forms.ModelForm):
     class Meta:
