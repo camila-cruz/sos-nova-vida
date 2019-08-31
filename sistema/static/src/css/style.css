@@ -4,7 +4,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
-@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One');
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One')  /* Aquela fonte do cleave.js */;
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 /* Pra forçar a página a recarregar o cache: Ctrl+F5 */
 
@@ -276,6 +278,11 @@ input[type='radio'] {
 
 input[type='checkbox'] {
     transform: scale(1.5);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    display: none;
 }
 
 .texto-pia {
