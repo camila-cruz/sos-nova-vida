@@ -1,3 +1,5 @@
+var listaDoacoes = []
+
 $(document).ready(function() {
     // Adiciona uma animação para baixo quando o dropdown se expande
     $('.dropdown').on('show.bs.dropdown', function() {
@@ -84,18 +86,49 @@ $(document).ready(function() {
         });
     });
 
-
     /* Adicionando roupas e alimentos nas tabelas de doações (funciona com tabela vazia) */
     $('.js-btn-add').click(function(e){
-        var fg = $(e.target).closest(".form-group")
-        var fs = $(e.target).closest("fieldset")
+        var fg = $(e.target).closest(".form-group")     // Form-group mais perto de onde o botão foi clicado
+        var fs = $(e.target).closest("fieldset")    // Fieldset mais perto de onde o botão foi clicado
+        var item = $(fs).find(".js-tipo-item")      // Item mais perto desse fieldset
+        var qtd = $(fs).find(".js-qtd-item")        // Qtd mais perto desse fieldset
+        var tb = $(fg).find('table tr:last')        // Última linha da tabela mais próxima do form-group
         
-        $(fg).find('table tr:last').after(
-            '<tr><td>' +  $(fs).find(".js-tipo-item").val() + '</td><td>' + $(fs).find(".js-qtd-item").val() + '</td>' +
-            '<td class="text-center"><button type="button" class="close js-btn-close" style="float:none;"><span>&times;</span></button></td>' + '</tr>')
+        var tr = document.createElement("tr")   // Cria a linha da tabela
+        var tdItem = document.createElement("td")
+        tdItem.innerHTML = item.val()
 
-        $(fs).find(".js-tipo-item").val("")
-        $(fs).find(".js-qtd-item").val("")
+        var tdQtd = document.createElement("td")
+        tdQtd.innerHTML = qtd.val()
+
+        /* Botão que exclui o item da lista */
+        var btnFechar = document.createElement("button")
+        btnFechar.innerHTML = "<span>&times;</span>"
+        btnFechar.type = "button"
+        btnFechar.setAttribute("class", "close js-btn-close")
+        btnFechar.style.cssFloat = "none"
+
+        /* td do botão */
+        var tdBtn = document.createElement("td")
+        tdBtn.setAttribute("class", "text-center")
+        tdBtn.appendChild(btnFechar)
+
+        tr.append(tdItem, tdQtd, tdBtn)
+        tb.after(tr)
+
+        // 1: Dinheiro, 2: Roupa, 3: Alimento
+
+        listaDoacoes.push({
+            "tipo": $(fg).find('table')[0].id.slice(2).toLowerCase(),
+            "item": item.val(),
+            "qtd": qtd.val()
+        })
+        
+        console.log(listaDoacoes)
+
+        item.val("")
+        qtd.val("")
+        
     });
 
     /* Para excluir item da tabela (não tá funcionando) */
