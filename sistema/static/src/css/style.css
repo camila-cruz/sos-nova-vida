@@ -24,7 +24,7 @@ header {
     position: fixed;
     top: 0;
     left: 15%;
-    height: 10vh;
+    height: 9vh;
     width: 85%;
 
     display: flex;
@@ -42,22 +42,19 @@ header {
 section {
     background-color: coral;
     grid-column: 2/3;
-    margin-top: 10vh;
-    padding: 30px;
+    margin-top: 9vh;
+    padding: 10px;
     font-size: 1.1em;
+    
 }
 
 /* ******************************* MENU DE USUÁRIO ******************************* */
 
 .usuario {
-    /*float: right;
-    width: 15%;
-    position: relative;*/
     cursor: pointer;
     padding: 30px;
 }
 .usuario:hover {
-    /*background-color: #999999;*/
     background-color:  rgb(175,200,245);
 }
 
@@ -105,18 +102,39 @@ section {
     border-radius: 0px;
     background-color: rgb(209,223,250);
 }
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
 .menu li {
     padding: 10px;
-    border-bottom: 1px solid black;
+    font-size: 1.5em;
+    width: 100%;
+}
+
+.menu li a {
+    color: rgba(0, 0, 0, 0.726);
+}
+
+.menu li a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.menu li:hover {
+    /*background-color: rgb(20,200,150);*/
+    /*background-color: #eaeaea;*/
+    background-color: rgb(175,200,245);
 }
 
 .logo {
     background-color: #6495ED;
     border-right: 1px solid #6495ED;
 
-    height: 10vh;
+    height: 9vh;
     padding: 0px;   /* redundante neste caso */
-    border-bottom: 1px solid black;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -125,40 +143,6 @@ section {
 .logo a {
     color: white;
     text-decoration: none;
-}
-
-nav a {
-    /*color: #000000;*/
-    color: #eaeaea;
-}
-
-nav div {
-    padding: 0px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav li {
-    font-size: 1.5em;
-    width: 100%;
-}
-
-nav li a {
-    color: rgba(0, 0, 0, 0.726);
-}
-
-nav li a:hover {
-    color: black;
-    text-decoration: none;
-}
-
-nav li:hover {
-    /*background-color: rgb(20,200,150);*/
-    /*background-color: #eaeaea;*/
-    background-color: rgb(175,200,245);
 }
 /*
 .navmenu {
@@ -174,14 +158,31 @@ nav li:hover {
     z-index: -1;
 }
 
-.dropdown-menu {
+.ml {
+    position: relative;
     border: 0pt;
     border-radius: 0px; /* cantos 90º */
-    margin: 0% 0% 5%;   /* margem de baixo 5% */
+    margin: 5% 0% 5%;   /* margem de baixo 5% */
     box-shadow: none;
-    position: relative;
     width: 100%;
+    
+    /*background-color: rgba(253, 253, 253, 0);    */
     /*background-color: rgb(20,100,200);*/
+}
+
+.ml li {
+    width: 100%;
+    padding: 0px;
+    top: 0;
+    left: 0;
+}
+
+.ml li a {
+    height: 100%;
+}
+
+.ml li a:hover {
+    background-color: #f00
 }
 
 #collapse-navbar {
