@@ -1,4 +1,5 @@
 var listaDoacoes = []
+var idDoador;
 
 $(document).ready(function() {
     // Adiciona uma animação para baixo quando o dropdown se expande
@@ -136,6 +137,27 @@ $(document).ready(function() {
         var tr = $(e.target).closest("tr")
         console.log(tr)
         
+    });
+
+    /* Salva uma doação com os itens que foram inseridos */
+    $('#btnDoacao').click(function() {
+        var btnClicado = $(this).context.id
+        $('#doacaoForm').unbind().submit(function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form')
+            console.log(listaDoacoes)
+            $.ajax({
+                url: form.attr('action'),   // "post_doacao/"
+                data: form.serialize() +  "&itens=" + JSON.stringify(listaDoacoes),
+                //dataType: 'json',
+                method: "POST",
+                success: function(dados) {
+                    console.log("uhu");
+                    // $('#qtd-prod-' + dados.id).text(dados.qtd)
+                    //alert(dados.tipo + " de " + dados.qtd + " itens de " + dados.id)
+                }
+            })
+        });
     });
 
     $("#txtDoador").autocomplete({

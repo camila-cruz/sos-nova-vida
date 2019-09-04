@@ -87,6 +87,9 @@ class Doador(models.Model):
     vestuario = models.BooleanField(default=False)
     alimenticio = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.nome
+
 class Movimentacao(models.Model):
     valor = models.DecimalField(max_digits=7, decimal_places=2)
     CHOICES = (
@@ -109,12 +112,16 @@ class Produto(models.Model):
 class Doacao(models.Model):
     doador = models.ForeignKey(Doador, on_delete=models.SET_NULL, null=True)
     data = models.DateField(default=date.today)
+    descricao = models.CharField(max_length=60)
 
 class ItemDoacao(models.Model):
     id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='itens')
     tipo = models.CharField(max_length=10)   # Roupa ou Alimento
-    descricao = models.CharField(max_length=30)
+    nome = models.CharField(max_length=30)
     qtd = models.IntegerField()
+
+    def __str__(self):
+        return "Um(a) " + self.tipo + " com nome de " + self.nome + " foi doado com qtde de " + self.qtd
 
 class DinheiroDoacao(models.Model):
     id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='dinheiro')

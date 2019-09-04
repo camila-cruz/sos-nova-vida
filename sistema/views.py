@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from .models import *
@@ -140,12 +141,36 @@ def src_doador(request):
 # Doacoes
 def form_doacao(request):
     form = DoacaoForm()
-    return render(request, 'formDoacao.html', {'form': form})
+    form_dinheiro = DinheiroDoacaoForm()
+    
+    return render(request, 'formDoacao.html', {'form': form, 'form_dinheiro': form_dinheiro})
 
 def post_doacao(request):
     form = DoacaoForm(request.POST)
+    form_dinheiro = DinheiroDoacaoForm(request.POST)
+    itens = json.loads(request.POST["itens"])
+
     if form.is_valid():
-        form.save(commit = True)
+        print(form.cleaned_data)
+        doacao = form.save(commit=False)
+        doacao.save()
+
+        if form_dinheiro.is_valid() and form_dinheiro.has_changed():
+            dinheiro = form_dinheiro.save(commit=False)
+            dinheiro.id_doacao = doacao
+            dinheiro.save()
+
+        if len(itens) > 0:
+            for item in itens:
+                i = ItemDoacao()
+                i.id_doacao = doacao
+                i.tipo = item['tipo']
+                i.item = item['item']
+                i.qtd = item['qtd']
+                print (i)
+                i.save()
+
+    #    form.save(commit = True)
     return HttpResponseRedirect('/')
 
 def cons_doacao(request):
