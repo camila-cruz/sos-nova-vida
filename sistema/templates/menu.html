@@ -24,7 +24,8 @@
         <div class="btn-home">
             <a href="{% url 'index' %}">
                 <h3 class="hidden-sm hidden-xs">SOS Nova Vida</h3>
-                <h3 class="visible-sm visible-xs">Nova Vida</h3>
+                <h3 class="visible-sm hidden-xs">Nova Vida</h3>
+                <h3 class="hidden-sm visible-xs">SOS</h3>
             </a>
         </div>
         <div class="usuario dropdown">
@@ -37,22 +38,30 @@
             </ul>
         </div>
     </header>
-    <br class="clear">
-    <div>
-        <div class="menu col-md-2 col-sm-2">
-            <nav class="navmenu navmenu-default navbar-default" id="menuLateral">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="false">
+    <div class="principal">
+        <!--<div class="menu col-md-2 col-sm-2">-->
+            <!--<nav class="menu navmenu navmenu-default navbar-default" id="menuLateral">-->
+            <nav class="menu">
+                <div class="menu-header navbar-header">
+                    <button type="button" class="hamburguer navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <!-- <span class="icon-bar"></span> -->
                     </button>
                     <!--       <a class="navmenu-brand" href="index.html"><h3>SOS Nova Vida</h3></a> -->
                 </div>
                 <div class="collapse navbar-collapse" id="collapse-navbar">
-                    <ul class="nav navmenu-nav col-md-12">
+                    <!--<ul class="menu-lateral nav navmenu-nav col-md-12">-->
+                    <ul class="menu-lateral nav">
+                        <div class="menu-info">
+                            <span class="glyphicon glyphicon-user"></span><br>
+                            <h3>Simone</h3>
+                        </div>
+                        <li class="btn-menu-info">
+                            <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;&nbsp;Home</a>
+                        </li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="glyphicon glyphicon-heart-empty"></span>&nbsp;&nbsp;&nbsp;Acolhidos <span class="caret"></span></a>
@@ -89,11 +98,13 @@
                             </ul>
                         </li>
                         <li><a href="formConfig.html"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;&nbsp;Configurações</a></li>
+                        <li class="btn-menu-info"><a href="#"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;Sair</a></li>
                     </ul>
                 </div>
             </nav>
-        </div>
-        <section class="container col-md-10 col-sm-10" style="padding-left: 2%;">
+        <!--</div>-->
+        <!--<section class="container col-md-10 col-sm-10" style="padding-left: 2%;">-->
+        <section class="container col-md-12">
             <!-- Aqui entra o html específico de cada página -->
             {% block content %}
             {% endblock %}
