@@ -174,7 +174,9 @@ def post_doacao(request):
     return HttpResponseRedirect('/')
 
 def cons_doacao(request):
-    doacoes = Movimentacao.objects.filter(tipo="DOACAO")        # Verificar se essa é a forma certa de fazer isso
+    #doacoes = Movimentacao.objects.filter(tipo="DOACAO")        # Verificar se essa é a forma certa de fazer isso
+    doacoes = Doacao.objects.all()
+    #dinheiro = DinheiroDoacao.objects.all()
     return render(request, 'consultaDoacao.html', {'doacoes': doacoes})
 
 # Estoque
