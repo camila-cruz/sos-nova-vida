@@ -92,7 +92,6 @@ def get_dados_acolhido(request):
     for ano in anos:
         qtds.append(Acolhido.objects.filter(data_entrada__year=ano).count())
 
-    print (qtds)
     dados = {
         'anos': anos,
         'qtds': qtds
@@ -193,10 +192,6 @@ def cons_doacao(request):
     return render(request, 'consultaDoacao.html', {'doacoes': doacoes})
 
 # Estoque
-def form_produto(request):
-    form = ProdutoForm()
-    return render(request, 'formProduto.html', {'form': form})
-
 def post_produto(request):
     form = ProdutoForm(request.POST)
     if form.is_valid():

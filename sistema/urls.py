@@ -21,30 +21,29 @@ urlpatterns = [
     # url(r'consultaAcolhido', views.cons_acolhido),
 
     # Doadores
-    url(r'formDoador', views.form_doador, name="cad_doador"),
+    url(r'^doador/novo/$', views.form_doador, name="cad_doador"),
     url(r'^post_doador/$', views.post_doador),
-    url(r'consultaDoador', views.cons_doador),
+    url(r'^doador/$', views.cons_doador, name="cons_doador"),
     url(r'^src_doador/$', views.src_doador),
 
     # Doações
-    url(r'formDoacao', views.form_doacao),
+    url(r'^doacao/novo/$', views.form_doacao, name="cad_doacao"),
     url(r'^post_doacao/$', views.post_doacao),
-    url(r'consultaDoacao', views.cons_doacao),
+    url(r'^doacao/$', views.cons_doacao, name="cons_doacao"),
 
     # Estoque
-    url(r'formProduto', views.form_produto),
-    url(r'consultaEstoque', views.cons_estoque, name="estoque"),
+    url(r'^estoque/$', views.cons_estoque, name="estoque"),
     url(r'^post_produto/$', views.post_produto),
     url(r'^mov_estoque/(?P<id>\d+)/$', views.mov_estoque),
     url(r'^api/grafico/estoque', views.get_dados_estoque, name="dados_estoque"),
 
     # Contabilidade
     url(r'formContabilidade', views.form_contab),
-    url(r'^formMovimentacao', views.get_movimentacao),
+    url(r'^movimentacao/$', views.get_movimentacao, name="movimentacao"),
     url(r'^post_mov/$', views.post_mov),
 
     # Configurações
-    url(r'formConfig', views.form_config),
+    url(r'^configuracao/$', views.form_config, name="edit_configs"),
 
     # PIA
     url(r'formPIA', views.form_pia),
