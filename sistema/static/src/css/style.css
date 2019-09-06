@@ -119,7 +119,8 @@ section {
     right: auto;
     left: 0;
     top: 9vh;
-    min-height: 91vh;
+    /* min-height: 91vh; */
+    height: 91vh;
     width: 15%;
     padding-right: 0%;
 }
@@ -171,15 +172,15 @@ section {
     .menu {
         width: 100%;
         top: 0;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.0);
+        height: 9vh;
         z-index: 5;
         text-align: center;
     }
     
-    .menu-header {   
+    .menu-header {
         background-color: #6495ED;
     }
+
     #collapse-navbar {
         border: none;
     }
