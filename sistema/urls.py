@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^acolhido/(?P<id>\d+)/edit$', views.edit_acolhido, name="edit_acolhido"),
     url(r'^post_acolhido/$', views.post_acolhido),
     url(r'^acolhido/$', views.cons_acolhido, name="cons_acolhido"),
+    url(r'^api/grafico/acolhido/$', views.get_dados_acolhido, name="dados_acolhido"),
 
     # url(r'formAcolhido', views.form_acolhido),
     # url(r'getAcolhido/(?P<id>\d+)/$', views.get_acolhido),
@@ -35,6 +36,7 @@ urlpatterns = [
     url(r'consultaEstoque', views.cons_estoque, name="estoque"),
     url(r'^post_produto/$', views.post_produto),
     url(r'^mov_estoque/(?P<id>\d+)/$', views.mov_estoque),
+    url(r'^api/grafico/estoque', views.get_dados_estoque, name="dados_estoque"),
 
     # Contabilidade
     url(r'formContabilidade', views.form_contab),

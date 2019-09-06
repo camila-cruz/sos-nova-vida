@@ -86,6 +86,19 @@ def cons_acolhido(request):
     acolhidos = Acolhido.objects.all() #{} 
     return render(request, 'consultaAcolhido.html', {'acolhidos': acolhidos})
 
+def get_dados_acolhido(request):
+    anos = ['2017', '2018', '2019']
+    qtds = []
+    for ano in anos:
+        qtds.append(Acolhido.objects.filter(data_entrada__year=ano).count())
+
+    print (qtds)
+    dados = {
+        'anos': anos,
+        'qtds': qtds
+    }
+    return JsonResponse(dados)
+
 # PIA
 def form_pia(request):
     return render(request, 'formPIA.html')
@@ -220,6 +233,22 @@ def mov_estoque(request, id=None):
     }
     #return HttpResponseRedirect('/')
     return JsonResponse(dados)
+
+def get_dados_estoque(request):
+    #produtos = Produto.objects.get(descricao='Batata').qtd
+    produtos = Produto.objects.order_by('qtd')
+    nomes = []
+    qtds = []
+    for i in range(0,3):
+        nomes.append(produtos[i].descricao)
+        qtds.append(produtos[i].qtd)
+
+    dados = {
+        'nomes': nomes,
+        'qtds': qtds,
+    }
+    return JsonResponse(dados)
+
 
 # Contabilidade
 def form_contab(request):
