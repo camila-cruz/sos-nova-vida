@@ -125,7 +125,7 @@ class ItemDoacao(models.Model):
 
 class DinheiroDoacao(models.Model):
     id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='dinheiro')
-    valor = models.DecimalField(max_digits=7, decimal_places=2)
+    valor = models.DecimalField(max_digits=7, decimal_places=2, blank=True)
 
 class Caixa(models.Model):
     vlr_disponivel = models.DecimalField(max_digits=7, decimal_places=2)

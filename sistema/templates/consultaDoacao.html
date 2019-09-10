@@ -30,18 +30,34 @@
     <table class="table table-striped table-bordered table-condensed tabela">
         <tr>
             <th class="col-md-1"></th>
-            <th class="col-md-5">Descrição</th>
+            <th class="col-md-1">Data</th>
+            <th class="col-md-4">Descrição</th>
             <th class="col-md-1">Quantidade</th>
             <th class="col-md-1">Valor</th>
             <th class="col-md-2">Doador</th>
+            <th class="col-md-1"></th>
         </tr>
         {% for doacao in doacoes %}
         <tr>
             <td><input type="checkbox" ng-model='doacao.selecionado'></td>
+            <td>{{ doacao.data|date:"d/m/Y" }}</td>
             <td>{{ doacao.descricao }}</td>
-            <td>{{ doacao.quantidade }}</td>
-            <td>{{ doacao.valor }}</td>
+            <td>
+            {% for qtd in qtd_itens %}
+                {% if qtd.id == doacao.id %}
+                    {{ qtd.qtd_geral }}
+                {% endif %}
+            {% endfor %}
+            </td>
+            <td>
+            {% for d in qtd_dinheiro %}
+                {% if d.id == doacao.id %}
+                    R$ {{ d.dinheiro|floatformat:2 }}
+                {% endif %}
+            {% endfor %}
+            </td>
             <td>{{ doacao.doador.nome }}</td>
+            <td><a class="btn btn-info" href="{% url 'get_doacao' id=doacao.id %}" role="button">Visualizar</a></td>
         </tr>
         {% endfor %}
     </table>

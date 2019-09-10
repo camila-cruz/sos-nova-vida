@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^acolhido/novo/$', views.form_acolhido, name="cad_acolhido"),
     url(r'^acolhido/(?P<id>\d+)/$', views.get_acolhido, name="get_acolhido"),
     url(r'^acolhido/(?P<id>\d+)/edit$', views.edit_acolhido, name="edit_acolhido"),
-    url(r'^post_acolhido/$', views.post_acolhido),
+    url(r'post_acolhido/$', views.post_acolhido),
     url(r'^acolhido/$', views.cons_acolhido, name="cons_acolhido"),
     url(r'^api/grafico/acolhido/$', views.get_dados_acolhido, name="dados_acolhido"),
 
@@ -22,19 +22,20 @@ urlpatterns = [
 
     # Doadores
     url(r'^doador/novo/$', views.form_doador, name="cad_doador"),
-    url(r'^post_doador/$', views.post_doador),
+    url(r'post_doador/$', views.post_doador),
     url(r'^doador/$', views.cons_doador, name="cons_doador"),
     url(r'^src_doador/$', views.src_doador),
 
     # Doações
     url(r'^doacao/novo/$', views.form_doacao, name="cad_doacao"),
-    url(r'^post_doacao/$', views.post_doacao),
+    url(r'^doacao/(?P<id>\d+)/$', views.get_doacao, name="get_doacao"),
+    url(r'post_doacao/$', views.post_doacao),
     url(r'^doacao/$', views.cons_doacao, name="cons_doacao"),
 
     # Estoque
     url(r'^estoque/$', views.cons_estoque, name="estoque"),
-    url(r'^post_produto/$', views.post_produto),
-    url(r'^mov_estoque/(?P<id>\d+)/$', views.mov_estoque),
+    url(r'post_produto/$', views.post_produto),
+    url(r'mov_estoque/(?P<id>\d+)/$', views.mov_estoque),
     url(r'^api/grafico/estoque', views.get_dados_estoque, name="dados_estoque"),
 
     # Contabilidade

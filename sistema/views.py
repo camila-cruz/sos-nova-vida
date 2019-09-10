@@ -2,6 +2,8 @@ import json
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.forms import inlineformset_factory
+from django.db.models import Count, Sum
+from django.db.models.functions import Coalesce
 from .models import *
 from .forms import *
 
@@ -159,6 +161,11 @@ def form_doacao(request):
     
     return render(request, 'formDoacao.html', {'form': form, 'form_dinheiro': form_dinheiro})
 
+def get_doacao(request, id=None):
+    doacao = get_object_or_404(Doacao, id=id)
+
+    return render(request, 'getDoacao.html', {'doacao': doacao})
+
 def post_doacao(request):
     form = DoacaoForm(request.POST)
     form_dinheiro = DinheiroDoacaoForm(request.POST)
@@ -188,10 +195,11 @@ def post_doacao(request):
     return HttpResponseRedirect('/')
 
 def cons_doacao(request):
-    #doacoes = Movimentacao.objects.filter(tipo="DOACAO")        # Verificar se essa é a forma certa de fazer isso
-    doacoes = Doacao.objects.all()
-    #dinheiro = DinheiroDoacao.objects.all()
-    return render(request, 'consultaDoacao.html', {'doacoes': doacoes})
+    doacoes = Doacao.objects.all().order_by('-data')
+    qtd_itens = Doacao.objects.values('id').annotate(qtd_geral=Count('itens'))
+    qtd_dinheiro = Doacao.objects.values('id').annotate(dinheiro=Coalesce(Sum('dinheiro__valor'), 0))      # Sum(output_field=FloatField())
+
+    return render(request, 'consultaDoacao.html', {'doacoes': doacoes, 'qtd_itens': qtd_itens, 'qtd_dinheiro': qtd_dinheiro})
 
 # Estoque
 def post_produto(request):
