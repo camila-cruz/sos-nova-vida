@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+from django.forms import inlineformset_factory
 from .models import *
 from .forms import *
 
@@ -154,6 +155,7 @@ def src_doador(request):
 def form_doacao(request):
     form = DoacaoForm()
     form_dinheiro = DinheiroDoacaoForm()
+    #itens = inlineformset_factory(Doacao, ItemDoacao, fields=('tipo', 'nome', 'qtd'))     'itens': itens
     
     return render(request, 'formDoacao.html', {'form': form, 'form_dinheiro': form_dinheiro})
 
@@ -177,7 +179,7 @@ def post_doacao(request):
                 i = ItemDoacao()
                 i.id_doacao = doacao
                 i.tipo = item['tipo']
-                i.item = item['item']
+                i.nome = item['item']
                 i.qtd = item['qtd']
                 print (i)
                 i.save()

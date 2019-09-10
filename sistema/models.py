@@ -121,7 +121,7 @@ class ItemDoacao(models.Model):
     qtd = models.IntegerField()
 
     def __str__(self):
-        return "Um(a) " + self.tipo + " com nome de " + self.nome + " foi doado com qtde de " + self.qtd
+        return self.tipo + " - " + self.nome
 
 class DinheiroDoacao(models.Model):
     id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='dinheiro')
