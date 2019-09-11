@@ -46,9 +46,11 @@ class ProdutoForm(forms.ModelForm):
         fields = ['descricao', 'qtd']   # , 'unidade', 'data_validade', 'preco_entrada'
 
 class DoacaoForm(forms.ModelForm):
+    data = forms.DateField(input_formats=["%d/%m/%Y", "%Y-%m-%d"])
+
     class Meta:
         model = Doacao
-        fields = ['doador', 'descricao']    # 'data'
+        fields = ['data', 'descricao']  # ['doador', 'data', 'descricao']
 
 class DinheiroDoacaoForm(forms.ModelForm):
     class Meta:

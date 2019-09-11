@@ -170,10 +170,12 @@ def post_doacao(request):
     form = DoacaoForm(request.POST)
     form_dinheiro = DinheiroDoacaoForm(request.POST)
     itens = json.loads(request.POST["itens"])
+    doador = Doador.objects.get(id=request.POST["doador"])
 
     if form.is_valid():
         print(form.cleaned_data)
         doacao = form.save(commit=False)
+        doacao.doador = doador
         doacao.save()
 
         if form_dinheiro.is_valid() and form_dinheiro.has_changed():
@@ -196,7 +198,7 @@ def post_doacao(request):
 
 def cons_doacao(request):
     doacoes = Doacao.objects.all().order_by('-data')
-    qtd_itens = Doacao.objects.values('id').annotate(qtd_geral=Count('itens'))
+    qtd_itens = Doacao.objects.values('id').annotate(qtd_geral=Coalesce(Sum('itens__qtd'), 0))
     qtd_dinheiro = Doacao.objects.values('id').annotate(dinheiro=Coalesce(Sum('dinheiro__valor'), 0))      # Sum(output_field=FloatField())
 
     return render(request, 'consultaDoacao.html', {'doacoes': doacoes, 'qtd_itens': qtd_itens, 'qtd_dinheiro': qtd_dinheiro})

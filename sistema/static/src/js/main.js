@@ -142,13 +142,15 @@ $(document).ready(function() {
     /* Salva uma doação com os itens que foram inseridos */
     $('#btnDoacao').click(function() {
         var btnClicado = $(this).context.id
+        var doador = $("#txtDoador")
+        console.log("Doador: " + doador)
         $('#doacaoForm').unbind().submit(function(e) {
             e.preventDefault();
             var form = $(this).closest('form')
             console.log(listaDoacoes)
             $.ajax({
                 url: form.attr('action'),   // "post_doacao/"
-                data: form.serialize() +  "&itens=" + JSON.stringify(listaDoacoes),
+                data: form.serialize() +  "&itens=" + JSON.stringify(listaDoacoes) + "&doador=" + idDoador,
                 //dataType: 'json',
                 method: "POST",
                 success: function(dados) {
@@ -161,8 +163,15 @@ $(document).ready(function() {
     });
 
     $("#txtDoador").autocomplete({
-        source: '/src_doador/'
+        source: '/src_doador/',
     });
+
+    $( "#txtDoador" ).on( "autocompletechange", function( event, ui ) {
+        console.log(ui)
+        console.log(ui.item.id)
+        idDoador = ui.item.id
+    } );
+
 
     $(".btn-imprimir").click(function(){
         $("#printable").printThis({
