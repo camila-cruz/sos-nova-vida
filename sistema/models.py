@@ -111,8 +111,12 @@ class Produto(models.Model):
     
 class Doacao(models.Model):
     doador = models.ForeignKey(Doador, on_delete=models.SET_NULL, null=True)
-    data = models.DateField(default=date.today)
+    data = models.DateField(default=date.today)     # Data em que a doação foi feita
     descricao = models.CharField(max_length=60)
+    data_registro = models.DateField(default=date.today) # Data que a doação é registrada no sistema
+
+    def __str__(self):
+        return self.descricao
 
 class ItemDoacao(models.Model):
     id_doacao = models.ForeignKey(Doacao, on_delete=models.CASCADE, related_name='itens')
