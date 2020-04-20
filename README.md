@@ -8,10 +8,10 @@ Sistema integrado com website para a SOS Nova Vida
 ## Instalando as dependências
 
 Atualmente, o projeto precisa desses pacotes para funcionar:
-* Django 2.2.6
+* Django 2.2.10
 * Django Widget Tweaks 1.4.5
 * Django Local Flavor 2.2
-* Pillow 6.2.0
+* Pillow
 
 Para instalar as dependências, digite o comando:
 ~~~python
