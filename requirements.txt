@@ -1,3 +1,4 @@
-Django
-django-localflavor
-django-widget-tweaks
+Django==2.2.6
+django-localflavor==2.2
+django-widget-tweaks==1.4.5
+Pillow==6.2.0
