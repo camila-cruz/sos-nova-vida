@@ -1,5 +1,6 @@
 .vscode/
+sistema/templates/form.html
 sistema/__pycache__/
 sistema/migrations/__pycache__/
-sistema/templates/form.html
 sos_nova_vida/__pycache__/
+__pycache__/
